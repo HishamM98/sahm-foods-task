@@ -1,0 +1,38 @@
+<nav class="sidebar" [attr.aria-label]="'SIDEBAR.NAV_ARIA' | translate">
+  <div class="sidebar__brand">
+    <div class="sidebar__avatar" aria-hidden="true">ST</div>
+    <div class="sidebar__brand-text">
+      <p class="sidebar__brand-title">{{ 'SIDEBAR.TERMINAL' | translate }}</p>
+      <p class="sidebar__brand-subtitle">{{ 'SIDEBAR.STATION' | translate }}</p>
+    </div>
+  </div>
+
+  <ul class="sidebar__nav">
+    @for (item of navItems; track item.id) {
+      <li>
+        <a
+          class="sidebar__link"
+          [routerLink]="item.route"
+          routerLinkActive="sidebar__link--active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <i [class]="'sidebar__icon ' + item.icon" aria-hidden="true"></i>
+          <span>{{ item.labelKey | translate }}</span>
+        </a>
+      </li>
+    }
+  </ul>
+
+  <div class="sidebar__footer">
+    @for (item of footerItems; track item.id) {
+      <button
+        type="button"
+        class="sidebar__link"
+        [class.sidebar__link--danger]="item.tone === 'danger'"
+      >
+        <i [class]="'sidebar__icon ' + item.icon" aria-hidden="true"></i>
+        <span>{{ item.labelKey | translate }}</span>
+      </button>
+    }
+  </div>
+</nav>

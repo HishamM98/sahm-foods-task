@@ -1,0 +1,49 @@
+<header class="header">
+    <div class="header__left">
+        <h1 class="header__brand">{{ 'HEADER.BRAND' | translate }}</h1>
+
+        <div class="header__load" role="status" [attr.aria-label]="'HEADER.LOAD_ARIA' | translate">
+            <span class="header__load-label">{{ 'HEADER.LOAD' | translate }}</span>
+            <div class="header__load-track" role="progressbar" [attr.aria-valuenow]="loadPercent()" aria-valuemin="0"
+                aria-valuemax="100">
+                <div class="header__load-fill" [style.width.%]="loadPercent()"></div>
+            </div>
+            <span class="header__load-value">{{ 'HEADER.LOAD_HIGH' | translate }}</span>
+        </div>
+    </div>
+
+    <div class="header__center">
+        <button type="button" class="header__search" [attr.aria-label]="'HEADER.SEARCH_ARIA' | translate">
+            <i class="fa-solid fa-magnifying-glass header__search-icon" aria-hidden="true"></i>
+            <span class="header__search-placeholder">{{ 'HEADER.SEARCH_PLACEHOLDER' | translate }}</span>
+            <kbd class="header__shortcut">{{ 'HEADER.SHORTCUT' | translate }}</kbd>
+        </button>
+    </div>
+
+    <div class="header__right">
+        <div class="header__network" role="status">
+            <i class="fa-solid fa-wifi header__network-icon" aria-hidden="true"></i>
+            <span class="header__network-text">{{ 'HEADER.NETWORK_ONLINE' | translate }}</span>
+        </div>
+
+        <div class="header__actions">
+            <button type="button" class="header__lang-btn" (click)="toggleLanguage()"
+                [attr.aria-label]="'HEADER.LANG_TOGGLE_ARIA' | translate">
+                <i class="fa-solid fa-globe" aria-hidden="true"></i>
+                <span>{{ languageToggleLabel() }}</span>
+            </button>
+
+            <button type="button" class="header__icon-btn" [attr.aria-label]="'HEADER.NOTIFICATIONS_ARIA' | translate">
+                <i class="fa-regular fa-bell" aria-hidden="true"></i>
+            </button>
+
+            <button type="button" class="header__icon-btn header__icon-btn--accent"
+                [attr.aria-label]="'HEADER.HISTORY_ARIA' | translate">
+                <span class="header__history-icon" aria-hidden="true">
+                    <i class="fa-regular fa-clipboard"></i>
+                    <i class="fa-solid fa-clock header__history-clock"></i>
+                </span>
+            </button>
+        </div>
+    </div>
+</header>

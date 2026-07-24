@@ -1,0 +1,12 @@
+---
+description: "Injects the project design principles and architecture specifications into every prompt"
+globs: "*"
+alwaysApply: true
+---
+
+# Global Context: Design Specifications
+
+You must strictly adhere to the UI, architectural, and systemic constraints outlined in the project's design document. 
+
+Before generating any code, layouts, or logic paths, read and follow the requirements located here:
+- [design.md](../../docs/design.md)

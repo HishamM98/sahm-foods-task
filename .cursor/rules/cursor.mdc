@@ -22,6 +22,10 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 - Use `NgOptimizedImage` for all static images.
   - `NgOptimizedImage` does not work for inline base64 images.
 
+## Responsiveness
+
+- All views should support all screen sizes (mobile/tablet/desktop).
+
 ## Accessibility Requirements
 
 - It MUST pass all AXE checks.
@@ -58,3 +62,11 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 - Design services around a single responsibility
 - Use the `providedIn: 'root'` option for singleton services
 - Use the `inject()` function instead of constructor injection
+
+## Localization
+
+- All text should be localized in AR/EN using ngx-translate and .json files in [i18n](../../public/assets/i18n).
+
+## Icons
+
+- All icons should be Font Awesome icons which is already added in [Index](../../src/index.html).

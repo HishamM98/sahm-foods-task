@@ -1,0 +1,27 @@
+{
+  "HEADER": {
+    "BRAND": "سهم فود",
+    "LOAD": "الحمل",
+    "LOAD_HIGH": "مرتفع",
+    "LOAD_ARIA": "حمل المطبخ: مرتفع",
+    "SEARCH_PLACEHOLDER": "ابحث عن الطلبات...",
+    "SEARCH_ARIA": "البحث في الطلبات",
+    "SHORTCUT": "⌘ K",
+    "NETWORK_ONLINE": "الشبكة: متصل",
+    "LANG_TOGGLE_ARIA": "التبديل إلى الإنجليزية",
+    "NOTIFICATIONS_ARIA": "الإشعارات",
+    "HISTORY_ARIA": "سجل الطلبات"
+  },
+  "SIDEBAR": {
+    "NAV_ARIA": "التنقل الرئيسي",
+    "TERMINAL": "محطة سهم",
+    "STATION": "المحطة 01 • المطبخ الرئيسي",
+    "DASHBOARD": "لوحة التحكم",
+    "LIVE_ORDERS": "الطلبات المباشرة",
+    "MENU": "القائمة",
+    "HISTORY": "السجل",
+    "SETTINGS": "الإعدادات",
+    "HELP": "المساعدة",
+    "LOGOUT": "تسجيل الخروج"
+  }
+}

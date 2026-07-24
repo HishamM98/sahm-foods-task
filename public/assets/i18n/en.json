@@ -1,0 +1,27 @@
+{
+  "HEADER": {
+    "BRAND": "Sahm Food",
+    "LOAD": "LOAD",
+    "LOAD_HIGH": "High",
+    "LOAD_ARIA": "Kitchen load: High",
+    "SEARCH_PLACEHOLDER": "Search orders...",
+    "SEARCH_ARIA": "Search orders",
+    "SHORTCUT": "⌘ K",
+    "NETWORK_ONLINE": "Network: Online",
+    "LANG_TOGGLE_ARIA": "Switch to Arabic",
+    "NOTIFICATIONS_ARIA": "Notifications",
+    "HISTORY_ARIA": "Order history"
+  },
+  "SIDEBAR": {
+    "NAV_ARIA": "Main navigation",
+    "TERMINAL": "Sahm Terminal",
+    "STATION": "Station 01 • Main Kitchen",
+    "DASHBOARD": "Dashboard",
+    "LIVE_ORDERS": "Live Orders",
+    "MENU": "Menu",
+    "HISTORY": "History",
+    "SETTINGS": "Settings",
+    "HELP": "Help",
+    "LOGOUT": "Logout"
+  }
+}
