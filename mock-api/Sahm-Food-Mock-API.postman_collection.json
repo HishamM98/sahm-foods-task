@@ -1,0 +1,276 @@
+{
+  "info": {
+    "_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "name": "Sahm Food Mock API",
+    "description": "REST endpoints served by MSW (src/app/mock-backend). Start the Angular app with npm start so the service worker is active, then hit http://localhost:4200/api/...",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "protocol",
+      "value": "http",
+      "type": "string"
+    },
+    {
+      "key": "host",
+      "value": "localhost",
+      "type": "string"
+    },
+    {
+      "key": "port",
+      "value": "3333",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "List orders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{protocol}}://{{host}}:{{port}}/api/orders",
+              "protocol": "{{protocol}}",
+              "host": ["{{host}}"],
+              "port": "{{port}}",
+              "path": ["api", "orders"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List orders by status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{protocol}}://{{host}}:{{port}}/api/orders?status=preparing",
+              "protocol": "{{protocol}}",
+              "host": ["{{host}}"],
+              "port": "{{port}}",
+              "path": ["api", "orders"],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "preparing"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get order by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{protocol}}://{{host}}:{{port}}/api/orders/2841",
+              "protocol": "{{protocol}}",
+              "host": ["{{host}}"],
+              "port": "{{port}}",
+              "path": ["api", "orders", "2841"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update order status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"preparing\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{protocol}}://{{host}}:{{port}}/api/orders/2841/status",
+              "protocol": "{{protocol}}",
+              "host": ["{{host}}"],
+              "port": "{{port}}",
+              "path": ["api", "orders", "2841", "status"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Search products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{protocol}}://{{host}}:{{port}}/api/products?q=burger&limit=20",
+              "protocol": "{{protocol}}",
+              "host": ["{{host}}"],
+              "port": "{{port}}",
+              "path": ["api", "products"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "burger"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get product by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{protocol}}://{{host}}:{{port}}/api/products/p-burger-classic",
+              "protocol": "{{protocol}}",
+              "host": ["{{host}}"],
+              "port": "{{port}}",
+              "path": ["api", "products", "p-burger-classic"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Kitchen",
+      "item": [
+        {
+          "name": "Get kitchen load",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{protocol}}://{{host}}:{{port}}/api/kitchen/load",
+              "protocol": "{{protocol}}",
+              "host": ["{{host}}"],
+              "port": "{{port}}",
+              "path": ["api", "kitchen", "load"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Set kitchen load",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"percent\": 88\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{protocol}}://{{host}}:{{port}}/api/kitchen/load",
+              "protocol": "{{protocol}}",
+              "host": ["{{host}}"],
+              "port": "{{port}}",
+              "path": ["api", "kitchen", "load"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "AI Assistant",
+      "item": [
+        {
+          "name": "Get suggestions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{protocol}}://{{host}}:{{port}}/api/ai/orders/2838/suggestions",
+              "protocol": "{{protocol}}",
+              "host": ["{{host}}"],
+              "port": "{{port}}",
+              "path": ["api", "ai", "orders", "2838", "suggestions"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get suggestions (stream sim)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{protocol}}://{{host}}:{{port}}/api/ai/orders/2838/suggestions?stream=true",
+              "protocol": "{{protocol}}",
+              "host": ["{{host}}"],
+              "port": "{{port}}",
+              "path": ["api", "ai", "orders", "2838", "suggestions"],
+              "query": [
+                {
+                  "key": "stream",
+                  "value": "true"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Retry suggestions",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{protocol}}://{{host}}:{{port}}/api/ai/orders/2838/suggestions/retry",
+              "protocol": "{{protocol}}",
+              "host": ["{{host}}"],
+              "port": "{{port}}",
+              "path": ["api", "ai", "orders", "2838", "suggestions", "retry"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
