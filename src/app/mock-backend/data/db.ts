@@ -10,7 +10,6 @@ import {
 } from '../../core/models/api.types';
 import { AI_SUGGESTIONS_SEED } from './ai-suggestions.seed';
 import { CUSTOMERS_SEED } from './customers.seed';
-import { KITCHEN_LOAD_SEED } from './kitchen.seed';
 import { ORDERS_SEED } from './orders.seed';
 import { PRODUCTS_SEED } from './products.seed';
 
@@ -25,14 +24,12 @@ function clone<T>(value: T): T {
 class MockDb {
   orders: OrderDto[] = clone(ORDERS_SEED);
   products: ProductDto[] = clone(PRODUCTS_SEED);
-  kitchenLoad: KitchenLoadDto = clone(KITCHEN_LOAD_SEED);
   aiByOrderId: Record<string, AiSuggestionDto[]> = clone(AI_SUGGESTIONS_SEED);
   customers: OrderCustomerDto[] = clone(CUSTOMERS_SEED);
 
   reset(): void {
     this.orders = clone(ORDERS_SEED);
     this.products = clone(PRODUCTS_SEED);
-    this.kitchenLoad = clone(KITCHEN_LOAD_SEED);
     this.aiByOrderId = clone(AI_SUGGESTIONS_SEED);
     this.customers = clone(CUSTOMERS_SEED);
   }
@@ -105,33 +102,17 @@ class MockDb {
     }
   }
 
-  setKitchenLoad(percent: number): KitchenLoadDto {
-    const level = toLoadLevel(percent);
-    this.kitchenLoad = {
-      level,
-      percent,
+  getKitchenLoad(): KitchenLoadDto {
+    const kitchenLoadPercent = this.orders.filter((o) => o.status === 'preparing' || o.status === 'received').length / this.orders.length * 100;
+    let kitchenLoad = {
+      level: toLoadLevel(kitchenLoadPercent),
+      percent: kitchenLoadPercent,
       activeTickets: this.orders.filter((o) =>
         o.status === 'received' || o.status === 'preparing' || o.status === 'ready',
       ).length,
       updatedAt: new Date().toISOString(),
     };
-
-    // Cascade: high/critical load marks longest preparing tickets as delayed.
-    if (percent >= 70) {
-      for (const order of this.orders) {
-        if (order.status === 'preparing' && order.elapsedSeconds > 15 * 60) {
-          order.delayed = true;
-        }
-      }
-    } else {
-      for (const order of this.orders) {
-        if (order.status === 'preparing') {
-          order.delayed = false;
-        }
-      }
-    }
-
-    return clone(this.kitchenLoad);
+    return clone(kitchenLoad);
   }
 
   searchProducts(query: string, category?: string): ProductDto[] {

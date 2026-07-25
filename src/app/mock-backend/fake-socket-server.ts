@@ -59,12 +59,6 @@ class FakeSocketServer {
 
     mockDb.bumpElapsed();
 
-    // Oscillate kitchen load to drive cascading UI reactions.
-    const drift = Math.floor(Math.random() * 17) - 8;
-    const nextPercent = Math.min(98, Math.max(18, mockDb.kitchenLoad.percent + drift));
-    const load = mockDb.setKitchenLoad(nextPercent);
-    this.publishKitchenLoad(load);
-
     // Push one random active order update (elapsed / delayed flags).
     const active = mockDb.orders.filter((o) => o.status !== 'completed');
     if (active.length) {

@@ -14,6 +14,7 @@ import { ConnectivityService } from '../../../core/services/connectivity.service
 import { FakeSocketService } from '../../../core/services/fake-socket.service';
 import { I18nService } from '../../../core/services/i18n.service';
 import { KitchenLoadLevel } from '../../../core/models/api.types';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -48,6 +49,7 @@ export class Header implements OnInit {
   });
 
   ngOnInit(): void {
+    this.pollKitchenLoad();
     this.kitchenApi
       .getLoad()
       .pipe(takeUntilDestroyed(this.destroyRef))
@@ -57,14 +59,15 @@ export class Header implements OnInit {
           this.loadLevel.set(load.level);
         },
       });
+  }
 
-    this.socket
-      .kitchenLoadUpdates()
-      .pipe(takeUntilDestroyed(this.destroyRef))
+  private pollKitchenLoad(): void {
+    timer(0, 4000).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => this.kitchenApi
+      .getLoad()
       .subscribe((load) => {
         this.loadPercent.set(load.percent);
         this.loadLevel.set(load.level);
-      });
+      }));
   }
 
   toggleLanguage(): void {
