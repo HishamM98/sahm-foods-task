@@ -8,7 +8,7 @@
                 aria-valuemax="100">
                 <div class="header__load-fill" [style.width.%]="loadPercent()"></div>
             </div>
-            <span class="header__load-value">{{ 'HEADER.LOAD_HIGH' | translate }}</span>
+            <span class="header__load-value">{{ loadLabelKey() | translate }}</span>
         </div>
     </div>
 
@@ -22,8 +22,14 @@
 
     <div class="header__right">
         <div class="header__network" role="status">
-            <i class="fa-solid fa-wifi header__network-icon" aria-hidden="true"></i>
-            <span class="header__network-text">{{ 'HEADER.NETWORK_ONLINE' | translate }}</span>
+            <i
+              class="header__network-icon"
+              [class]="isOnline() ? 'fa-solid fa-wifi header__network-icon' : 'fa-solid fa-wifi-slash header__network-icon'"
+              aria-hidden="true"
+            ></i>
+            <span class="header__network-text">
+              {{ (isOnline() ? 'HEADER.NETWORK_ONLINE' : 'HEADER.NETWORK_OFFLINE') | translate }}
+            </span>
         </div>
 
         <div class="header__actions">

@@ -1,0 +1,73 @@
+<article
+  class="order-card"
+  [class.order-card--dimmed]="order().dimmed"
+  [class.order-card--plain]="plain()"
+  [style.--card-accent]="accent()"
+  role="button"
+  tabindex="0"
+  (click)="onCardClick()"
+  (keydown.enter)="onCardClick()"
+  (keydown.space)="$event.preventDefault(); onCardClick()"
+  [attr.aria-label]="order().number"
+>
+  <div class="order-card__top">
+    <span class="order-card__channel">{{ channelKey(order().channel) | translate }}</span>
+    <span class="order-card__number">{{ order().number }}</span>
+  </div>
+
+  @if (order().itemCount !== undefined) {
+    <p class="order-card__items">
+      {{ itemsKey(order().itemCount!) | translate: { count: order().itemCount } }}
+    </p>
+  } @else if (order().summaryKey) {
+    <p class="order-card__summary">
+      {{ order().summaryKey! | translate: order().summaryParams }}
+    </p>
+  }
+
+  @if (order().elapsedLabel || order().status || order().action) {
+    <div class="order-card__footer">
+      <div class="order-card__meta">
+        @if (order().elapsedLabel) {
+          <span
+            class="order-card__meta-item"
+            [class.order-card__meta-item--accent]="order().elapsedTone === 'accent'"
+            [class.order-card__meta-item--danger]="order().elapsedTone === 'danger'"
+            [class.order-card__meta-item--success]="order().elapsedTone === 'success'"
+          >
+            @if (order().elapsedIcon) {
+              <i [class]="order().elapsedIcon!" aria-hidden="true"></i>
+            }
+            <span>{{ order().elapsedLabel }}</span>
+          </span>
+        }
+
+        @if (order().status; as status) {
+          <span
+            class="order-card__meta-item order-card__meta-item--status"
+            [class.order-card__meta-item--accent]="status.tone === 'accent'"
+            [class.order-card__meta-item--danger]="status.tone === 'danger'"
+            [class.order-card__meta-item--success]="status.tone === 'success'"
+          >
+            <i
+              [class]="status.icon"
+              [class.order-card__pulse]="status.pulse"
+              aria-hidden="true"
+            ></i>
+            <span>{{ status.labelKey | translate }}</span>
+          </span>
+        }
+      </div>
+
+      @if (order().action; as action) {
+        <button
+          type="button"
+          class="order-card__action"
+          (click)="onServeClick($event)"
+        >
+          {{ action.labelKey | translate }}
+        </button>
+      }
+    </div>
+  }
+</article>

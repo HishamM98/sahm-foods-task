@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
 import { DashboardPage } from './features/dashboard/pages/dashboard-page/dashboard-page';
 
-export const routes: Routes = [
+const appRoutes: Routes = [
   {
     path: '',
-    redirectTo: 'live-orders',
+    redirectTo: 'dashboard',
     pathMatch: 'full',
   },
   {
@@ -13,7 +13,8 @@ export const routes: Routes = [
   },
   {
     path: 'live-orders',
-    component: DashboardPage,
+    loadChildren: () =>
+      import('./features/live-orders/orders.routes').then((m) => m.ordersRoutes),
   },
   {
     path: 'menu',
@@ -29,6 +30,22 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'live-orders',
+    redirectTo: 'dashboard',
   },
+];
+
+const dialogRoutes: Routes = [
+  {
+    path: 'order/:id',
+    outlet: 'modal',
+    loadComponent: () =>
+      import('./features/live-orders/pages/order-details/order-details-dialog').then(
+        (m) => m.OrderDetailRouteComponent,
+      ),
+  },
+];
+
+export const routes: Routes = [
+  ...appRoutes,
+  ...dialogRoutes,
 ];

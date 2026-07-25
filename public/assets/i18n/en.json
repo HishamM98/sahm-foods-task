@@ -8,9 +8,14 @@
     "SEARCH_ARIA": "Search orders",
     "SHORTCUT": "⌘ K",
     "NETWORK_ONLINE": "Network: Online",
+    "NETWORK_OFFLINE": "Network: Offline",
     "LANG_TOGGLE_ARIA": "Switch to Arabic",
     "NOTIFICATIONS_ARIA": "Notifications",
-    "HISTORY_ARIA": "Order history"
+    "HISTORY_ARIA": "Order history",
+    "LOAD_LOW": "Low",
+    "LOAD_MEDIUM": "Medium",
+    "LOAD_HIGH": "High",
+    "LOAD_CRITICAL": "Critical"
   },
   "SIDEBAR": {
     "NAV_ARIA": "Main navigation",
@@ -23,5 +28,39 @@
     "SETTINGS": "Settings",
     "HELP": "Help",
     "LOGOUT": "Logout"
+  },
+  "LIVE_ORDERS": {
+    "BOARD_ARIA": "Live orders board",
+    "COLUMNS": {
+      "RECEIVED": "Received",
+      "PREPARING": "Preparing",
+      "READY": "Ready",
+      "DELIVERED": "Delivered",
+      "COMPLETED": "Completed"
+    },
+    "CHANNEL": {
+      "DELIVERY": "Delivery",
+      "WALK_IN": "Walk-in",
+      "ONLINE": "Online"
+    },
+    "ITEMS": "{{count}} items",
+    "ITEM_ONE": "{{count}} item",
+    "CLOSED_AGO": "Closed {{minutes}}m ago",
+    "STATUS": {
+      "NEW": "New",
+      "DELAYED": "Delayed",
+      "CALLING": "Calling",
+      "PICKED_UP": "Picked up"
+    },
+    "ACTIONS": {
+      "SERVE": "Serve"
+    },
+    "LOADING": "Loading live orders…",
+    "RETRY": "Retry",
+    "ERRORS": {
+      "LOAD_FAILED": "Could not load orders from the mock API.",
+      "SERVE_FAILED": "Could not mark order as served.",
+      "MOVE_FAILED": "Could not move order. Board was refreshed."
+    }
   }
 }

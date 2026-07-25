@@ -8,9 +8,14 @@
     "SEARCH_ARIA": "البحث في الطلبات",
     "SHORTCUT": "⌘ K",
     "NETWORK_ONLINE": "الشبكة: متصل",
+    "NETWORK_OFFLINE": "الشبكة: غير متصل",
     "LANG_TOGGLE_ARIA": "التبديل إلى الإنجليزية",
     "NOTIFICATIONS_ARIA": "الإشعارات",
-    "HISTORY_ARIA": "سجل الطلبات"
+    "HISTORY_ARIA": "سجل الطلبات",
+    "LOAD_LOW": "منخفض",
+    "LOAD_MEDIUM": "متوسط",
+    "LOAD_HIGH": "مرتفع",
+    "LOAD_CRITICAL": "حرج"
   },
   "SIDEBAR": {
     "NAV_ARIA": "التنقل الرئيسي",
@@ -23,5 +28,39 @@
     "SETTINGS": "الإعدادات",
     "HELP": "المساعدة",
     "LOGOUT": "تسجيل الخروج"
+  },
+  "LIVE_ORDERS": {
+    "BOARD_ARIA": "لوحة الطلبات المباشرة",
+    "COLUMNS": {
+      "RECEIVED": "مستلم",
+      "PREPARING": "قيد التحضير",
+      "READY": "جاهز",
+      "DELIVERED": "تم التسليم",
+      "COMPLETED": "مكتمل"
+    },
+    "CHANNEL": {
+      "DELIVERY": "توصيل",
+      "WALK_IN": "حضوري",
+      "ONLINE": "أونلاين"
+    },
+    "ITEMS": "{{count}} عناصر",
+    "ITEM_ONE": "عنصر واحد",
+    "CLOSED_AGO": "أُغلق منذ {{minutes}} د",
+    "STATUS": {
+      "NEW": "جديد",
+      "DELAYED": "متأخر",
+      "CALLING": "جارٍ النداء",
+      "PICKED_UP": "تم الاستلام"
+    },
+    "ACTIONS": {
+      "SERVE": "تقديم"
+    },
+    "LOADING": "جاري تحميل الطلبات المباشرة…",
+    "RETRY": "إعادة المحاولة",
+    "ERRORS": {
+      "LOAD_FAILED": "تعذر تحميل الطلبات من واجهة المحاكاة.",
+      "SERVE_FAILED": "تعذر تعليم الطلب كمُقدَّم.",
+      "MOVE_FAILED": "تعذر نقل الطلب. تم تحديث اللوحة."
+    }
   }
 }

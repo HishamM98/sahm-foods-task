@@ -3,34 +3,30 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideTranslateService } from '@ngx-translate/core';
 
-import { Header } from './header';
-import { I18nService } from '../../../core/services/i18n.service';
+import { LiveOrdersPage } from './live-orders-page';
 
-describe('Header', () => {
-  let component: Header;
-  let fixture: ComponentFixture<Header>;
+describe('LiveOrdersPage', () => {
+  let component: LiveOrdersPage;
+  let fixture: ComponentFixture<LiveOrdersPage>;
   let httpMock: HttpTestingController;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Header],
+      imports: [LiveOrdersPage],
       providers: [
         provideTranslateService({ fallbackLang: 'en', lang: 'en' }),
-        I18nService,
         provideHttpClient(),
         provideHttpClientTesting(),
       ],
     }).compileComponents();
 
     httpMock = TestBed.inject(HttpTestingController);
-    fixture = TestBed.createComponent(Header);
+    fixture = TestBed.createComponent(LiveOrdersPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    const req = httpMock.expectOne('/api/kitchen/load');
-    req.flush({
-      data: { level: 'high', percent: 72, activeTickets: 9, updatedAt: new Date().toISOString() },
-    });
+    const req = httpMock.expectOne('/api/orders');
+    req.flush({ data: [] });
     await fixture.whenStable();
   });
 
