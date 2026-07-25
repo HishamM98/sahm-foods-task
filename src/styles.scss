@@ -74,7 +74,40 @@ body {
   color: var(--on-background);
 }
 
+button,
+a,
+input,
+textarea,
+select {
+  font-family: var(--font-family);
+}
+
 html[lang='ar'],
 html[lang='ar'] body {
   --font-family: var(--font-family-ar);
+}
+
+* {
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--surface-container-lowest);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--outline);
+  }
+}
+
+.order-details-dialog.p-dialog {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  max-width: 96vw;
+}
+
+.order-details-dialog .p-dialog-content {
+  padding: 0;
+  background: transparent;
+  overflow: hidden;
 }

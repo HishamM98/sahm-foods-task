@@ -62,5 +62,56 @@
       "SERVE_FAILED": "Could not mark order as served.",
       "MOVE_FAILED": "Could not move order. Board was refreshed."
     }
+  },
+  "ORDER_DETAILS": {
+    "TITLE": "Order {{number}}",
+    "PLACED": "Placed {{time}}",
+    "PLACED_ETA": "Placed {{time}} • ETA: {{eta}} ({{remaining}}m remaining)",
+    "LOADING": "Loading order details…",
+    "ARIA": {
+      "DIALOG": "Order details for {{number}}"
+    },
+    "CUSTOMER": {
+      "TITLE": "Customer Information",
+      "ADDRESS": "Delivery Address"
+    },
+    "ITEMS": {
+      "TITLE": "Order Items"
+    },
+    "TIMELINE": {
+      "TITLE": "Timeline",
+      "RECEIVED": "Order Received",
+      "SENT_TO_KITCHEN": "Sent to Kitchen",
+      "PREPARING": "Preparing Items",
+      "READY": "Ready for Pickup",
+      "DELIVERED": "Out for Delivery",
+      "COMPLETED": "Completed",
+      "IN_PROGRESS": "In Progress"
+    },
+    "ACTIONS": {
+      "CLOSE": "Close",
+      "CANCEL": "Cancel Order",
+      "PRINT": "Print Receipt",
+      "MOVE_TO_PREPARING": "Move to Preparing",
+      "MOVE_TO_READY": "Move to Ready",
+      "MOVE_TO_DELIVERED": "Mark Delivered",
+      "MOVE_TO_COMPLETED": "Complete Order"
+    },
+    "AI": {
+      "TITLE": "AI Assistant",
+      "PROMPT_LABEL": "Ask AI",
+      "PROMPT_PLACEHOLDER": "Ask AI for more insights...",
+      "SEND": "Send message",
+      "CALL": "Call customer",
+      "ROUTE": "Active Route",
+      "DISTANCE": "1.2 miles from Hub",
+      "TAGS": {
+        "UPSELL": "Upsell Suggestion"
+      }
+    },
+    "ERRORS": {
+      "LOAD_FAILED": "Could not load this order.",
+      "MOVE_FAILED": "Could not update order status."
+    }
   }
 }

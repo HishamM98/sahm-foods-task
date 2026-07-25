@@ -62,5 +62,56 @@
       "SERVE_FAILED": "تعذر تعليم الطلب كمُقدَّم.",
       "MOVE_FAILED": "تعذر نقل الطلب. تم تحديث اللوحة."
     }
+  },
+  "ORDER_DETAILS": {
+    "TITLE": "طلب {{number}}",
+    "PLACED": "تم الطلب {{time}}",
+    "PLACED_ETA": "تم الطلب {{time}} • الوصول المتوقع: {{eta}} (متبقي {{remaining}} د)",
+    "LOADING": "جاري تحميل تفاصيل الطلب…",
+    "ARIA": {
+      "DIALOG": "تفاصيل الطلب {{number}}"
+    },
+    "CUSTOMER": {
+      "TITLE": "معلومات العميل",
+      "ADDRESS": "عنوان التوصيل"
+    },
+    "ITEMS": {
+      "TITLE": "عناصر الطلب"
+    },
+    "TIMELINE": {
+      "TITLE": "الخط الزمني",
+      "RECEIVED": "تم استلام الطلب",
+      "SENT_TO_KITCHEN": "أُرسل إلى المطبخ",
+      "PREPARING": "تحضير العناصر",
+      "READY": "جاهز للاستلام",
+      "DELIVERED": "في الطريق",
+      "COMPLETED": "مكتمل",
+      "IN_PROGRESS": "قيد التنفيذ"
+    },
+    "ACTIONS": {
+      "CLOSE": "إغلاق",
+      "CANCEL": "إلغاء الطلب",
+      "PRINT": "طباعة الإيصال",
+      "MOVE_TO_PREPARING": "نقل إلى التحضير",
+      "MOVE_TO_READY": "نقل إلى الجاهز",
+      "MOVE_TO_DELIVERED": "تعليم كتم التسليم",
+      "MOVE_TO_COMPLETED": "إكمال الطلب"
+    },
+    "AI": {
+      "TITLE": "مساعد الذكاء الاصطناعي",
+      "PROMPT_LABEL": "اسأل المساعد",
+      "PROMPT_PLACEHOLDER": "اسأل المساعد عن مزيد من الرؤى...",
+      "SEND": "إرسال",
+      "CALL": "اتصال بالعميل",
+      "ROUTE": "مسار نشط",
+      "DISTANCE": "1.2 ميل من المركز",
+      "TAGS": {
+        "UPSELL": "اقتراح زيادة البيع"
+      }
+    },
+    "ERRORS": {
+      "LOAD_FAILED": "تعذر تحميل هذا الطلب.",
+      "MOVE_FAILED": "تعذر تحديث حالة الطلب."
+    }
   }
 }

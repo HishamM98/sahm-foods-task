@@ -1,0 +1,362 @@
+@if (loading()) {
+<div class="order-details__shell" role="status" aria-busy="true" [dir]="i18n.dir()">
+    <div class="order-details__main">
+        <!-- Header Skeleton -->
+        <header class="order-details__header">
+            <div class="order-details__header-text" style="width: 100%;">
+                <div class="order-details__title-row" style="display: flex; gap: 0.75rem; align-items: center;">
+                    <p-skeleton width="180px" height="1.75rem" />
+                    <p-skeleton width="80px" height="1.25rem" borderRadius="1rem" />
+                </div>
+                <div style="margin-top: 0.5rem;">
+                    <p-skeleton width="240px" height="1rem" />
+                </div>
+            </div>
+            <p-skeleton shape="circle" size="2rem" />
+        </header>
+
+        <!-- Body Skeleton -->
+        <div class="order-details__body">
+            <!-- Customer Section -->
+            <section class="order-details__section">
+                <p-skeleton width="120px" height="1.25rem" styleClass="mb-3" />
+                <div class="order-details__customer">
+                    <div class="order-details__customer-block">
+                        <p-skeleton shape="circle" size="2.5rem" />
+                        <div style="display: flex; flex-direction: column; gap: 0.35rem; flex: 1;">
+                            <p-skeleton width="140px" height="1.1rem" />
+                            <p-skeleton width="100px" height="0.875rem" />
+                        </div>
+                    </div>
+                    <div class="order-details__customer-block">
+                        <p-skeleton shape="circle" size="2.5rem" />
+                        <div style="display: flex; flex-direction: column; gap: 0.35rem; flex: 1;">
+                            <p-skeleton width="120px" height="1.1rem" />
+                            <p-skeleton width="80%" height="0.875rem" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Items Section -->
+            <section class="order-details__section">
+                <p-skeleton width="100px" height="1.25rem" styleClass="mb-3" />
+                <ul class="order-details__items" style="list-style: none; padding: 0; margin: 0;">
+                    @for (i of [1, 2, 3]; track i) {
+                    <li class="order-details__item"
+                        style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0;">
+                        <div class="order-details__item-main"
+                            style="display: flex; gap: 0.75rem; align-items: center; flex: 1;">
+                            <p-skeleton width="24px" height="1.25rem" />
+                            <div style="display: flex; flex-direction: column; gap: 0.25rem; flex: 1;">
+                                <p-skeleton width="60%" height="1rem" />
+                                <p-skeleton width="40%" height="0.8rem" />
+                            </div>
+                        </div>
+                        <p-skeleton width="60px" height="1.25rem" />
+                    </li>
+                    }
+                </ul>
+            </section>
+
+            <!-- Timeline Section -->
+            <section class="order-details__section">
+                <p-skeleton width="110px" height="1.25rem" styleClass="mb-3" />
+                <div style="display: flex; flex-direction: column; gap: 1rem; padding-inline-start: 0.5rem;">
+                    @for (i of [1, 2, 3]; track i) {
+                    <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+                        <p-skeleton width="130px" height="1rem" />
+                        <p-skeleton width="90px" height="0.8rem" />
+                    </div>
+                    }
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer Skeleton -->
+        <footer class="order-details__footer">
+            <div class="order-details__footer-left" style="display: flex; gap: 0.5rem;">
+                <p-skeleton width="90px" height="2.25rem" borderRadius="0.375rem" />
+                <p-skeleton width="80px" height="2.25rem" borderRadius="0.375rem" />
+            </div>
+            <p-skeleton width="130px" height="2.25rem" borderRadius="0.375rem" />
+        </footer>
+    </div>
+
+    <!-- AI Panel Skeleton -->
+    <aside class="order-details__ai">
+        <header class="order-details__ai-header" style="display: flex; gap: 0.5rem; align-items: center;">
+            <p-skeleton shape="circle" size="1.25rem" />
+            <p-skeleton width="100px" height="1.25rem" />
+        </header>
+
+        <div class="order-details__ai-scroll"
+            style="display: flex; flex-direction: column; gap: 1rem; padding: 1rem 0;">
+            <!-- AI Card 1 -->
+            <div
+                style="padding: 1rem; border-radius: 0.5rem; border: 1px solid var(--surface-border, #e5e7eb); display: flex; flex-direction: column; gap: 0.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <p-skeleton width="70px" height="1rem" borderRadius="1rem" />
+                    <p-skeleton shape="circle" size="1rem" />
+                </div>
+                <p-skeleton width="70%" height="1.1rem" />
+                <p-skeleton width="90%" height="0.875rem" />
+                <p-skeleton width="100%" height="2rem" borderRadius="0.375rem" styleClass="mt-2" />
+            </div>
+
+            <!-- AI Card 2 -->
+            <div
+                style="padding: 1rem; border-radius: 0.5rem; border: 1px solid var(--surface-border, #e5e7eb); display: flex; flex-direction: column; gap: 0.5rem;">
+                <p-skeleton width="60%" height="1.1rem" />
+                <p-skeleton width="85%" height="0.875rem" />
+            </div>
+        </div>
+
+        <!-- AI Footer Skeleton -->
+        <div class="order-details__ai-footer" style="display: flex; gap: 0.5rem;">
+            <p-skeleton width="100%" height="2.25rem" borderRadius="0.375rem" />
+        </div>
+    </aside>
+</div>
+} @else if (error(); as err) {
+<div class="order-details__state order-details__state--error" role="alert">
+    <p>{{ err }}</p>
+    <button type="button" class="order-details__btn order-details__btn--ghost" (click)="close()">
+        {{ 'ORDER_DETAILS.ACTIONS.CLOSE' | translate }}
+    </button>
+</div>
+} @else if (order(); as order) {
+<div class="order-details__shell" role="dialog"
+    [attr.aria-label]="'ORDER_DETAILS.ARIA.DIALOG' | translate: { number: order.number }" [dir]="i18n.dir()">
+    <div class="order-details__main">
+        <header class="order-details__header">
+            <div class="order-details__header-text">
+                <div class="order-details__title-row">
+                    <h2 class="order-details__title">
+                        {{ 'ORDER_DETAILS.TITLE' | translate: { number: order.number } }}
+                    </h2>
+                    <span class="order-details__channel">{{ channelKey() | translate }}</span>
+                </div>
+                <p class="order-details__meta">{{ metaLine() }}</p>
+            </div>
+            <button type="button" class="order-details__icon-btn"
+                [attr.aria-label]="'ORDER_DETAILS.ACTIONS.CLOSE' | translate" (click)="close()">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+        </header>
+
+        <div class="order-details__body">
+            <section class="order-details__section" aria-labelledby="od-customer-heading">
+                <h3 id="od-customer-heading" class="order-details__section-title">
+                    {{ 'ORDER_DETAILS.CUSTOMER.TITLE' | translate }}
+                </h3>
+                <div class="order-details__customer" [class.order-details__customer--single]="!hasAddress()">
+                    <div class="order-details__customer-block">
+                        <div class="order-details__avatar" aria-hidden="true">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div>
+                            <p class="order-details__customer-name">{{ order.customer.name }}</p>
+                            <p class="order-details__customer-sub" dir="auto">{{ order.customer.phone }}</p>
+                        </div>
+                    </div>
+                    @if (hasAddress()) {
+                    <div class="order-details__customer-block">
+                        <div class="order-details__avatar" aria-hidden="true">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <p class="order-details__customer-name">
+                                {{ 'ORDER_DETAILS.CUSTOMER.ADDRESS' | translate }}
+                            </p>
+                            @if (order.customer.addressLine1) {
+                            <p class="order-details__customer-sub">{{ order.customer.addressLine1 }}</p>
+                            }
+                            @if (order.customer.addressLine2) {
+                            <p class="order-details__customer-sub">{{ order.customer.addressLine2 }}</p>
+                            }
+                        </div>
+                    </div>
+                    }
+                </div>
+            </section>
+
+            <section class="order-details__section" aria-labelledby="od-items-heading">
+                <h3 id="od-items-heading" class="order-details__section-title">
+                    {{ 'ORDER_DETAILS.ITEMS.TITLE' | translate }}
+                </h3>
+                <ul class="order-details__items">
+                    @for (item of order.items; track item.productId + '-' + $index) {
+                    <li class="order-details__item">
+                        <div class="order-details__item-main">
+                            <span class="order-details__qty">{{ item.quantity }}x</span>
+                            <div class="order-details__item-text">
+                                <p class="order-details__item-name">{{ item.name }}</p>
+                                @if (item.notes) {
+                                <p class="order-details__item-notes">{{ item.notes }}</p>
+                                }
+                            </div>
+                        </div>
+                        <span class="order-details__item-price">
+                            {{ lineTotal(item.unitPrice, item.quantity) }}
+                        </span>
+                    </li>
+                    }
+                </ul>
+            </section>
+
+            <section class="order-details__section" aria-labelledby="od-timeline-heading">
+                <h3 id="od-timeline-heading" class="order-details__section-title">
+                    {{ 'ORDER_DETAILS.TIMELINE.TITLE' | translate }}
+                </h3>
+                <ol class="order-details__timeline">
+                    @for (event of order.timeline; track event.labelKey + '-' + $index) {
+                    <li class="order-details__timeline-item"
+                        [class.order-details__timeline-item--pending]="event.inProgress">
+                        <p class="order-details__timeline-label">{{ event.labelKey | translate }}</p>
+                        <p class="order-details__timeline-time">
+                            {{ timelineTime(event.at, event.inProgress) }}
+                        </p>
+                    </li>
+                    }
+                </ol>
+            </section>
+        </div>
+
+        <footer class="order-details__footer">
+            <div class="order-details__footer-left">
+                <button type="button" class="order-details__btn order-details__btn--danger">
+                    {{ 'ORDER_DETAILS.ACTIONS.CANCEL' | translate }}
+                </button>
+                <button type="button" class="order-details__btn order-details__btn--ghost">
+                    {{ 'ORDER_DETAILS.ACTIONS.PRINT' | translate }}
+                </button>
+            </div>
+            @if (canAdvance() && primaryActionKey(); as actionKey) {
+            <button type="button" class="order-details__btn order-details__btn--primary" [disabled]="actionBusy()"
+                (click)="advanceStatus()">
+                {{ actionKey | translate }}
+            </button>
+            }
+        </footer>
+    </div>
+
+    <aside class="order-details__ai" [attr.aria-label]="'ORDER_DETAILS.AI.TITLE' | translate">
+        <header class="order-details__ai-header">
+            <i class="fa-solid fa-sparkles" aria-hidden="true"></i>
+            <h3 class="order-details__ai-title">{{ 'ORDER_DETAILS.AI.TITLE' | translate }}</h3>
+        </header>
+
+        <div class="order-details__ai-scroll">
+            @for (suggestion of suggestions(); track suggestion.id) {
+            <article [class]="suggestionClass(suggestion.type)">
+                @switch (suggestion.type) {
+                @case ('upsell') {
+                <div class="order-details__ai-card-top">
+                    <span class="order-details__ai-tag">
+                        {{ suggestion.tag || ('ORDER_DETAILS.AI.TAGS.UPSELL' | translate) }}
+                    </span>
+                    <i class="fa-solid fa-burger" aria-hidden="true"></i>
+                </div>
+                <p class="order-details__ai-card-title">{{ suggestion.title }}</p>
+                <p class="order-details__ai-card-message">{{ suggestion.message }}</p>
+                @if (suggestion.actionLabel) {
+                <button type="button" class="order-details__ai-action order-details__ai-action--primary">
+                    {{ suggestion.actionLabel }}
+                </button>
+                }
+                }
+                @case ('allergy') {
+                <div class="order-details__ai-card-top order-details__ai-card-top--start">
+                    <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+                    <p class="order-details__ai-card-title order-details__ai-card-title--error">
+                        {{ suggestion.title }}
+                    </p>
+                </div>
+                <p class="order-details__ai-card-message">{{ suggestion.message }}</p>
+                <div class="order-details__ai-actions">
+                    @if (suggestion.actionLabel) {
+                    <button type="button" class="order-details__ai-action order-details__ai-action--danger">
+                        {{ suggestion.actionLabel }}
+                    </button>
+                    }
+                    @if (suggestion.showSecondaryAction) {
+                    <button type="button" class="order-details__ai-icon-action"
+                        [attr.aria-label]="'ORDER_DETAILS.AI.CALL' | translate">
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                    </button>
+                    }
+                </div>
+                }
+                @case ('missing-info') {
+                <div class="order-details__ai-card-top order-details__ai-card-top--start">
+                    <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+                    <p class="order-details__ai-card-title order-details__ai-card-title--warn">
+                        {{ suggestion.title }}
+                    </p>
+                </div>
+                <p class="order-details__ai-card-message">{{ suggestion.message }}</p>
+                @if (suggestion.actionLabel) {
+                <button type="button" class="order-details__ai-action order-details__ai-action--warn">
+                    <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                    {{ suggestion.actionLabel }}
+                </button>
+                }
+                }
+                @case ('delivery-risk') {
+                <div class="order-details__ai-card-top">
+                    <div class="order-details__ai-stream-label">
+                        <span class="order-details__ai-spinner" aria-hidden="true"></span>
+                        <p class="order-details__ai-card-title">{{ suggestion.title }}</p>
+                    </div>
+                    @if (suggestion.tag) {
+                    <span class="order-details__ai-status">{{ suggestion.tag }}</span>
+                    }
+                </div>
+                <div class="order-details__ai-skeleton" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                </div>
+                <p class="order-details__ai-card-stream">{{ suggestion.message }}</p>
+                }
+                @case ('kitchen-overload') {
+                <div class="order-details__ai-card-top order-details__ai-card-top--start">
+                    <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                    <p class="order-details__ai-card-title order-details__ai-card-title--info">
+                        {{ suggestion.title }}
+                    </p>
+                </div>
+                <p class="order-details__ai-card-message">{{ suggestion.message }}</p>
+                }
+                }
+            </article>
+            }
+
+            @if (showMap()) {
+            <div class="order-details__map">
+                <img ngSrc="/assets/images/order-delivery-map.png" width="288" height="288" alt=""
+                    class="order-details__map-img" />
+                <div class="order-details__map-overlay" aria-hidden="true"></div>
+                <div class="order-details__map-pin" aria-hidden="true"></div>
+                <div class="order-details__map-caption">
+                    <p class="order-details__map-eyebrow">{{ 'ORDER_DETAILS.AI.ROUTE' | translate }}</p>
+                    <p class="order-details__map-distance">{{ 'ORDER_DETAILS.AI.DISTANCE' | translate }}</p>
+                </div>
+            </div>
+            }
+        </div>
+
+        <div class="order-details__ai-footer">
+            <label class="order-details__sr-only" for="od-ai-prompt">
+                {{ 'ORDER_DETAILS.AI.PROMPT_LABEL' | translate }}
+            </label>
+            <input id="od-ai-prompt" type="text" class="order-details__ai-input" [value]="aiPrompt()"
+                [placeholder]="'ORDER_DETAILS.AI.PROMPT_PLACEHOLDER' | translate" (input)="onAiPromptInput($event)" />
+            <button type="button" class="order-details__ai-send"
+                [attr.aria-label]="'ORDER_DETAILS.AI.SEND' | translate">
+                <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+            </button>
+        </div>
+    </aside>
+</div>
+}

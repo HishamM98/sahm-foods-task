@@ -21,6 +21,21 @@ export interface OrderItemDto {
   name: string;
   quantity: number;
   notes?: string;
+  unitPrice: number;
+}
+
+export interface OrderCustomerDto {
+  name: string;
+  phone: string;
+  addressLine1?: string;
+  addressLine2?: string;
+}
+
+export interface OrderTimelineEventDto {
+  /** i18n key under ORDER_DETAILS.TIMELINE.* */
+  labelKey: string;
+  at?: string;
+  inProgress?: boolean;
 }
 
 export interface OrderDto {
@@ -29,13 +44,16 @@ export interface OrderDto {
   channel: OrderChannel;
   status: OrderStatus;
   items: OrderItemDto[];
+  customer: OrderCustomerDto;
   createdAt: string;
   updatedAt: string;
+  etaAt?: string;
   elapsedSeconds: number;
   delayed: boolean;
   isNew: boolean;
   calling: boolean;
   closedAt?: string;
+  timeline: OrderTimelineEventDto[];
 }
 
 export interface ProductDto {
@@ -62,6 +80,11 @@ export interface AiSuggestionDto {
   severity: 'info' | 'warning' | 'critical';
   title: string;
   message: string;
+  /** Optional badge / CTA shown in the AI panel */
+  tag?: string;
+  actionLabel?: string;
+  actionAmount?: number;
+  showSecondaryAction?: boolean;
 }
 
 export interface AiSuggestionResponseDto {

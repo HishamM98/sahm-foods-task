@@ -14,7 +14,6 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { TranslatePipe } from '@ngx-translate/core';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { OrdersApiService } from '../../../../core/api/orders-api.service';
 import { OrderDto, OrderStatus } from '../../../../core/models/api.types';
 import { FakeSocketService } from '../../../../core/services/fake-socket.service';
@@ -29,12 +28,10 @@ import { Router } from '@angular/router';
   templateUrl: './live-orders-page.html',
   styleUrl: './live-orders-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [DialogService],
 })
 export class LiveOrdersPage implements OnInit {
   private readonly ordersApi = inject(OrdersApiService);
   private readonly socket = inject(FakeSocketService);
-  private readonly dialogService = inject(DialogService);
   private readonly destroyRef = inject(DestroyRef);
 
   private readonly orders = signal<OrderDto[]>([]);
@@ -94,7 +91,6 @@ export class LiveOrdersPage implements OnInit {
       .updateStatus(order.id, newStatus)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
-        next: (updated) => this.upsertOrder(updated),
         error: () => {
           this.error.set('LIVE_ORDERS.ERRORS.MOVE_FAILED');
           this.loadOrders();
