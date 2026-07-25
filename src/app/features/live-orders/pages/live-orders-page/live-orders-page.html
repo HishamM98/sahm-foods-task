@@ -28,8 +28,8 @@
       <div class="board__cards" cdkDropList [id]="column.id" [cdkDropListData]="column.orders"
         (cdkDropListDropped)="drop($event)">
         @for (order of column.orders; track order.id) {
-        <app-order-card cdkDrag [order]="order" [accent]="column.accent" [plain]="column.id === 'completed'"
-          (openOrder)="openOrder($event)" (serveOrder)="onServe($event)" />
+        <app-order-card cdkDrag [cdkDragDisabled]="column.id === 'completed'" [order]="order" [accent]="column.accent"
+          [plain]="column.id === 'completed'" (openOrder)="openOrder($event)" (serveOrder)="onServe($event)" />
         }
       </div>
     </section>
