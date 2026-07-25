@@ -67,8 +67,10 @@ class MockDb {
     return clone(order);
   }
 
-  listOrders(status?: OrderStatus): OrderDto[] {
-    const list = status ? this.orders.filter((o) => o.status === status) : this.orders;
+  listOrders(status?: OrderStatus, channel?: OrderChannel): OrderDto[] {
+    let list = status ? this.orders.filter((o) => o.status === status) : this.orders;
+    list = channel ? list.filter((o) => o.channel === channel) : list;
+
     return clone(list);
   }
 

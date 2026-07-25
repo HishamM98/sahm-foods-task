@@ -13,6 +13,46 @@
   } @else {
   <div class="board__content">
     <div class="board__actions">
+      <div class="board__channel-select" (keydown)="handleKeyDown($event)" #dropdownRef>
+        <button type="button" class="board__channel-select-button" aria-haspopup="listbox"
+          [attr.aria-expanded]="showChannelDropdown()" aria-controls="channel-options" (click)="toggleDropdown()">
+          <i class="fa-solid fa-utensils"></i>
+          {{ (selectedLabel() || 'LIVE_ORDERS.CHANNEL.SELECT') | translate }}
+          @if(selectedLabel()){
+          <i class="fa-solid fa-xmark" (click)="selectOption(undefined, undefined); $event.stopPropagation()"></i>
+          }
+          @else {
+          <i class="fa-solid fa-chevron-down" [class.rotate-180]="showChannelDropdown()"></i>
+          }
+        </button>
+
+        @if(showChannelDropdown()) {
+        <ul id="channel-options" class="board__channel-select-menu" role="listbox" tabindex="-1">
+
+          <li role="option" tabindex="0" class="board__channel-select-option"
+            [attr.aria-selected]="selectedChannel() === 'walk-in'"
+            (click)="selectOption('walk-in', 'LIVE_ORDERS.CHANNEL.WALK_IN')">
+            <i class="fa-solid fa-person-walking"></i>
+            {{ 'LIVE_ORDERS.CHANNEL.WALK_IN' | translate }}
+          </li>
+
+          <li role="option" tabindex="0" class="board__channel-select-option"
+            [attr.aria-selected]="selectedChannel() === 'delivery'"
+            (click)="selectOption('delivery', 'LIVE_ORDERS.CHANNEL.DELIVERY')">
+            <i class="fa-solid fa-truck"></i>
+            {{ 'LIVE_ORDERS.CHANNEL.DELIVERY' | translate }}
+          </li>
+
+          <li role="option" tabindex="0" class="board__channel-select-option"
+            [attr.aria-selected]="selectedChannel() === 'online'"
+            (click)="selectOption('online', 'LIVE_ORDERS.CHANNEL.ONLINE')">
+            <i class="fa-solid fa-globe"></i>
+            {{ 'LIVE_ORDERS.CHANNEL.ONLINE' | translate }}
+          </li>
+
+        </ul>
+        }
+      </div>
       <button class="board__addOrder" (click)="addOrder()">
         <i class="fa-regular fa-plus"></i>
         <span>{{ 'LIVE_ORDERS.ADD_ORDER' | translate }}</span>

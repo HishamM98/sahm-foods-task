@@ -1,5 +1,5 @@
 import { http, HttpResponse } from 'msw';
-import { OrderStatus } from '../../core/models/api.types';
+import { OrderChannel, OrderStatus } from '../../core/models/api.types';
 import { mockBackendConfig } from '../config';
 import { mockDb } from '../data/db';
 import { fakeSocketServer } from '../fake-socket-server';
@@ -8,7 +8,7 @@ import { maybeFail, withMockLatency } from '../utils/http-sim';
 const base = mockBackendConfig.apiPrefix;
 
 export const ordersHandlers = [
-  http.post(`${base}/orders`, async ({ request }) => {
+  http.post(`${base}/orders`, async () => {
     await withMockLatency();
     const failed = maybeFail();
     if (failed) return failed;
@@ -24,8 +24,9 @@ export const ordersHandlers = [
 
     const url = new URL(request.url);
     const status = url.searchParams.get('status') as OrderStatus | null;
+    const channel = url.searchParams.get('channel') as OrderChannel | null;
     return HttpResponse.json({
-      data: mockDb.listOrders(status ?? undefined),
+      data: mockDb.listOrders(status ?? undefined, channel ?? undefined),
     });
   }),
 

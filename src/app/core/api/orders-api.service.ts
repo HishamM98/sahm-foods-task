@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { OrderDto, OrderStatus } from '../models/api.types';
+import { OrderChannel, OrderDto, OrderStatus } from '../models/api.types';
 
 interface ApiListResponse<T> {
   data: T;
@@ -13,10 +13,13 @@ export class OrdersApiService {
   private readonly http = inject(HttpClient);
   private readonly base = `${environment.apiBaseUrl}/orders`;
 
-  list(status?: OrderStatus): Observable<OrderDto[]> {
+  list(status?: OrderStatus, channel?: OrderChannel): Observable<OrderDto[]> {
     let params = new HttpParams();
     if (status) {
       params = params.set('status', status);
+    }
+    if (channel) {
+      params = params.set('channel', channel);
     }
     return this.http
       .get<ApiListResponse<OrderDto[]>>(this.base, { params })

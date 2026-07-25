@@ -39,6 +39,7 @@
       "COMPLETED": "Completed"
     },
     "CHANNEL": {
+      "SELECT": "Select order type",
       "DELIVERY": "Delivery",
       "WALK_IN": "Walk-in",
       "ONLINE": "Online"

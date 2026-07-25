@@ -2,9 +2,12 @@ import {
   ChangeDetectionStrategy,
   Component,
   DestroyRef,
+  effect,
+  HostListener,
   inject,
   OnInit,
   signal,
+  viewChild,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
@@ -15,7 +18,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { TranslatePipe } from '@ngx-translate/core';
 import { OrdersApiService } from '../../../../core/api/orders-api.service';
-import { OrderDto, OrderStatus } from '../../../../core/models/api.types';
+import { OrderChannel, OrderDto, OrderStatus } from '../../../../core/models/api.types';
 import { FakeSocketService } from '../../../../core/services/fake-socket.service';
 import { OrderCard } from '../../components/order-card/order-card';
 import { groupOrdersIntoColumns } from '../../data/order-board.mapper';
@@ -31,6 +34,7 @@ import { ToastService } from '../../../../shared/services/toast.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LiveOrdersPage implements OnInit {
+  dropdownRef = viewChild<HTMLDivElement>('dropdownRef');
   private readonly ordersApi = inject(OrdersApiService);
   private readonly socket = inject(FakeSocketService);
   private readonly destroyRef = inject(DestroyRef);
@@ -41,6 +45,9 @@ export class LiveOrdersPage implements OnInit {
   readonly columns = signal<OrderColumn[]>([]);
   readonly loading = signal(true);
   readonly error = signal<string | null>(null);
+  readonly showChannelDropdown = signal(false);
+  readonly selectedChannel = signal<OrderChannel | undefined>(undefined);
+  readonly selectedLabel = signal<string | undefined>(undefined);
 
   ngOnInit(): void {
     this.loadOrders();
@@ -123,11 +130,22 @@ export class LiveOrdersPage implements OnInit {
       });
   }
 
+  selectOption(value: OrderChannel | undefined, label: string | undefined) {
+    this.selectedChannel.set(value);
+    this.selectedLabel.set(label);
+    this.showChannelDropdown.set(false);
+    this.loadOrders();
+  }
+
+  toggleDropdown(): void {
+    this.showChannelDropdown.set(!this.showChannelDropdown());
+  }
+
   private loadOrders(): void {
     this.loading.set(true);
     this.error.set(null);
     this.ordersApi
-      .list()
+      .list(undefined, this.selectedChannel())
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (list) => {
@@ -152,5 +170,25 @@ export class LiveOrdersPage implements OnInit {
     }
     this.orders.set(next);
     this.columns.set(groupOrdersIntoColumns(next));
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    if (this.dropdownRef() && !this.dropdownRef()?.contains(event.target as Node)) {
+      this.showChannelDropdown.set(false);
+    }
+  }
+
+  // Keyboard navigation (Escape to close, Enter/Space to trigger options)
+  handleKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      this.showChannelDropdown.set(false);
+    } else if (event.key === 'Enter' || event.key === ' ') {
+      const activeEl = document.activeElement as HTMLElement;
+      if (activeEl?.getAttribute('role') === 'option') {
+        activeEl.click();
+        event.preventDefault();
+      }
+    }
   }
 }

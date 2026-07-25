@@ -22,13 +22,11 @@
 
     <div class="header__right">
         <div class="header__network" role="status">
-            <i
-              class="header__network-icon"
-              [class]="isOnline() ? 'fa-solid fa-wifi header__network-icon' : 'fa-solid fa-wifi-slash header__network-icon'"
-              aria-hidden="true"
-            ></i>
+            <i class="header__network-icon"
+                [class]="isOnline() ? 'fa-solid fa-wifi header__network-icon' : 'fa-solid fa-wifi-slash header__network-icon'"
+                aria-hidden="true"></i>
             <span class="header__network-text">
-              {{ (isOnline() ? 'HEADER.NETWORK_ONLINE' : 'HEADER.NETWORK_OFFLINE') | translate }}
+                {{ (isOnline() ? 'HEADER.NETWORK_ONLINE' : 'HEADER.NETWORK_OFFLINE') | translate }}
             </span>
         </div>
 
@@ -39,7 +37,7 @@
                 <span>{{ languageToggleLabel() }}</span>
             </button>
 
-            <button type="button" class="header__icon-btn" [attr.aria-label]="'HEADER.NOTIFICATIONS_ARIA' | translate">
+            <!-- <button type="button" class="header__icon-btn" [attr.aria-label]="'HEADER.NOTIFICATIONS_ARIA' | translate">
                 <i class="fa-regular fa-bell" aria-hidden="true"></i>
             </button>
 
@@ -49,7 +47,7 @@
                     <i class="fa-regular fa-clipboard"></i>
                     <i class="fa-solid fa-clock header__history-clock"></i>
                 </span>
-            </button>
+            </button> -->
         </div>
     </div>
 </header>

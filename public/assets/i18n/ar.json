@@ -39,6 +39,7 @@
       "COMPLETED": "مكتمل"
     },
     "CHANNEL": {
+      "SELECT": "اختر نوع الطلب",
       "DELIVERY": "توصيل",
       "WALK_IN": "حضوري",
       "ONLINE": "أونلاين"
