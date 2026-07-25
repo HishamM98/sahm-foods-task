@@ -2,11 +2,14 @@ import {
   AiSuggestionDto,
   KitchenLoadDto,
   KitchenLoadLevel,
+  OrderChannel,
+  OrderCustomerDto,
   OrderDto,
   OrderStatus,
   ProductDto,
 } from '../../core/models/api.types';
 import { AI_SUGGESTIONS_SEED } from './ai-suggestions.seed';
+import { CUSTOMERS_SEED } from './customers.seed';
 import { KITCHEN_LOAD_SEED } from './kitchen.seed';
 import { ORDERS_SEED } from './orders.seed';
 import { PRODUCTS_SEED } from './products.seed';
@@ -24,12 +27,47 @@ class MockDb {
   products: ProductDto[] = clone(PRODUCTS_SEED);
   kitchenLoad: KitchenLoadDto = clone(KITCHEN_LOAD_SEED);
   aiByOrderId: Record<string, AiSuggestionDto[]> = clone(AI_SUGGESTIONS_SEED);
+  customers: OrderCustomerDto[] = clone(CUSTOMERS_SEED);
 
   reset(): void {
     this.orders = clone(ORDERS_SEED);
     this.products = clone(PRODUCTS_SEED);
     this.kitchenLoad = clone(KITCHEN_LOAD_SEED);
     this.aiByOrderId = clone(AI_SUGGESTIONS_SEED);
+    this.customers = clone(CUSTOMERS_SEED);
+  }
+
+  addOrder(): OrderDto {
+    const customer = this.customers[Math.floor(Math.random() * this.customers.length)];
+    const randomId = Math.floor(Math.random() * 5000).toString();
+    const channels: OrderChannel[] = ['walk-in', 'delivery', 'online'];
+    const shuffledProducts = [...this.products].sort(() => Math.random() - 0.5);
+    const numberOfItems = Math.floor(Math.random() * Math.min(5, shuffledProducts.length)) + 1; // 1-5 items
+
+    const order: OrderDto = {
+      id: randomId,
+      number: `#${randomId}`,
+      channel: channels[Math.floor(Math.random() * channels.length)],
+      status: 'received',
+      isNew: true,
+      calling: false,
+      delayed: false,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      items: shuffledProducts.slice(0, numberOfItems).map((p) => ({
+        productId: p.id,
+        name: p.name,
+        quantity: Math.floor(Math.random() * 10) + 1,
+        unitPrice: p.price,
+      })),
+      elapsedSeconds: 0,
+      customer,
+      timeline: [],
+    };
+
+    this.orders.push(order);
+
+    return clone(order);
   }
 
   listOrders(status?: OrderStatus): OrderDto[] {

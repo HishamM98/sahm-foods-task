@@ -71,6 +71,9 @@ class FakeSocketServer {
       const target = active[Math.floor(Math.random() * active.length)];
       this.publishOrderUpdated(mockDb.getOrder(target.id)!);
     }
+
+    const newOrder = mockDb.addOrder();
+    this.publish('order.created', newOrder);
   }
 }
 

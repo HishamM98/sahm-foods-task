@@ -23,6 +23,12 @@ export class OrdersApiService {
       .pipe(map((res) => res.data));
   }
 
+  create(): Observable<OrderDto> {
+    return this.http
+      .post<ApiListResponse<OrderDto>>(this.base, {})
+      .pipe(map((res) => res.data));
+  }
+
   getById(id: string): Observable<OrderDto> {
     return this.http
       .get<ApiListResponse<OrderDto>>(`${this.base}/${id}`)

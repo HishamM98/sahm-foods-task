@@ -48,6 +48,11 @@ export class LiveOrdersPage implements OnInit {
       .orderUpdates()
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((updated) => this.upsertOrder(updated));
+
+    this.socket
+      .ofType<OrderDto>('order.created')
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((event) => this.upsertOrder(event.payload));
   }
 
   columnCount(column: OrderColumn): string {
@@ -59,7 +64,13 @@ export class LiveOrdersPage implements OnInit {
   }
 
   addOrder() {
-
+    this.ordersApi
+      .create()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (order) => this.upsertOrder(order),
+        error: () => this.toastService.addError('LIVE_ORDERS.ERRORS.ADD_FAILED'),
+      });
   }
 
   onServe(order: Order): void {

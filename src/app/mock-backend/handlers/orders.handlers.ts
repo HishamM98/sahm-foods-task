@@ -8,6 +8,15 @@ import { maybeFail, withMockLatency } from '../utils/http-sim';
 const base = mockBackendConfig.apiPrefix;
 
 export const ordersHandlers = [
+  http.post(`${base}/orders`, async ({ request }) => {
+    await withMockLatency();
+    const failed = maybeFail();
+    if (failed) return failed;
+
+    const order = mockDb.addOrder();
+    return HttpResponse.json({ data: order });
+  }),
+
   http.get(`${base}/orders`, async ({ request }) => {
     await withMockLatency();
     const failed = maybeFail();
@@ -37,7 +46,7 @@ export const ordersHandlers = [
     const failed = maybeFail();
     if (failed) return failed;
 
-    const body = (await request.json()) as { status?: OrderStatus };
+    const body = (await request.json()) as { status?: OrderStatus; };
     if (!body.status) {
       return HttpResponse.json({ message: 'status is required' }, { status: 400 });
     }

@@ -15,7 +15,6 @@ export class ElapsedTimePipe implements PipeTransform {
     }
 
     const currentLang = this.translate.getCurrentLang() || 'ar';
-    console.log(currentLang);
     const mins = Math.floor(value / 60);
     const secs = Math.floor(value % 60);
 
