@@ -4,7 +4,7 @@ import { inject } from '@angular/core';
 import { catchError, retry } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
-export const errorInterceptorInterceptor: HttpInterceptorFn = (req, next) => {
+export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   const toast = inject(ToastService);
   return next(req).pipe(
     retry(1),

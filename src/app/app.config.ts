@@ -10,14 +10,15 @@ import Aura from '@primeuix/themes/aura';
 
 import ar from '@angular/common/locales/ar';
 import { MessageService } from 'primeng/api';
-import { errorInterceptorInterceptor } from './core/interceptors/error-interceptor-interceptor';
+import { errorInterceptor } from './core/interceptors/error.interceptor';
+import { cacheInterceptor } from './core/interceptors/cache.interceptor';
 registerLocaleData(ar);
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([errorInterceptorInterceptor])),
+    provideHttpClient(withInterceptors([cacheInterceptor, errorInterceptor])),
     provideTranslateService({
       loader: provideTranslateHttpLoader({
         prefix: '/assets/i18n/',
