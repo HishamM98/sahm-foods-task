@@ -50,7 +50,7 @@ class MockDb {
     order.status = status;
     order.updatedAt = new Date().toISOString();
     order.isNew = status === 'received';
-    order.calling = status === 'ready' ? order.calling : false;
+    order.calling = status === 'ready';
     if (status === 'completed') {
       order.closedAt = new Date().toISOString();
     }
