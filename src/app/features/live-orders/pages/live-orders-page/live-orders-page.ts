@@ -21,6 +21,7 @@ import { OrderCard } from '../../components/order-card/order-card';
 import { groupOrdersIntoColumns } from '../../data/order-board.mapper';
 import { Order, OrderColumn } from '../../models/order.model';
 import { Router } from '@angular/router';
+import { ToastService } from '../../../../shared/services/toast.service';
 
 @Component({
   selector: 'app-live-orders-page',
@@ -33,7 +34,7 @@ export class LiveOrdersPage implements OnInit {
   private readonly ordersApi = inject(OrdersApiService);
   private readonly socket = inject(FakeSocketService);
   private readonly destroyRef = inject(DestroyRef);
-
+  private readonly toastService = inject(ToastService);
   private readonly orders = signal<OrderDto[]>([]);
   private readonly router = inject(Router);
 
@@ -72,17 +73,20 @@ export class LiveOrdersPage implements OnInit {
   }
 
   drop(event: CdkDragDrop<Order[]>): void {
+    const previousData = event.previousContainer.data;
+    const currentData = event.container.data;
+
     if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      moveItemInArray(currentData, event.previousIndex, event.currentIndex);
       return;
     }
 
-    const order = event.previousContainer.data[event.previousIndex];
+    const order = previousData[event.previousIndex];
     const newStatus = event.container.id as OrderStatus;
 
     transferArrayItem(
-      event.previousContainer.data,
-      event.container.data,
+      previousData,
+      currentData,
       event.previousIndex,
       event.currentIndex,
     );
@@ -91,9 +95,15 @@ export class LiveOrdersPage implements OnInit {
       .updateStatus(order.id, newStatus)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
+        next: () => this.toastService.addSuccess('LIVE_ORDERS.SUCCESS.MOVE_ORDER'),
         error: () => {
-          this.error.set('LIVE_ORDERS.ERRORS.MOVE_FAILED');
-          this.loadOrders();
+          this.toastService.addError('LIVE_ORDERS.ERRORS.MOVE_FAILED');
+          transferArrayItem(
+            currentData,
+            previousData,
+            event.currentIndex,
+            event.previousIndex
+          );
         },
       });
   }

@@ -21,7 +21,7 @@ export class OrderDetailRouteComponent implements OnInit, OnDestroy {
       showHeader: false,
       modal: true,
       dismissableMask: true,
-      closable: false,
+      closable: true,
       styleClass: 'order-details-dialog',
       contentStyle: {
         padding: '0',
