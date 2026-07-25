@@ -9,6 +9,7 @@ import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
 
 import ar from '@angular/common/locales/ar';
+import { MessageService } from 'primeng/api';
 registerLocaleData(ar);
 
 export const appConfig: ApplicationConfig = {
@@ -28,6 +29,7 @@ export const appConfig: ApplicationConfig = {
       theme: {
         preset: Aura
       }
-    })
+    }),
+    MessageService
   ]
 };
