@@ -6,10 +6,12 @@ import {
 } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Order } from '../../models/order.model';
+import { ElapsedTimePipe } from '../../../../shared/pipes/elapsed-time-pipe';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-order-card',
-  imports: [TranslatePipe],
+  imports: [TranslatePipe, ElapsedTimePipe, TooltipModule],
   templateUrl: './order-card.html',
   styleUrl: './order-card.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

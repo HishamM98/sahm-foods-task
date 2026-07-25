@@ -58,6 +58,10 @@ export class LiveOrdersPage implements OnInit {
     this.router.navigate(['/', { outlets: { modal: ['order', order.id] } }]);
   }
 
+  addOrder() {
+
+  }
+
   onServe(order: Order): void {
     this.ordersApi
       .updateStatus(order.id, 'delivered')

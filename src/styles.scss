@@ -90,6 +90,7 @@ html[lang='ar'] body {
 * {
   ::-webkit-scrollbar {
     width: 4px;
+    height: 4px;
   }
   ::-webkit-scrollbar-track {
     background: var(--surface-container-lowest);
@@ -110,4 +111,16 @@ html[lang='ar'] body {
   padding: 0;
   background: transparent;
   overflow: hidden;
+}
+
+.p-tooltip {
+  --p-tooltip-background: var(--inverse-primary);
+}
+
+.p-tooltip-text {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  color: var(--on-surface);
 }

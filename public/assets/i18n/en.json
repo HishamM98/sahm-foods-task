@@ -30,6 +30,7 @@
   },
   "LIVE_ORDERS": {
     "BOARD_ARIA": "Live orders board",
+    "ADD_ORDER": "Add order",
     "COLUMNS": {
       "RECEIVED": "Received",
       "PREPARING": "Preparing",
@@ -63,7 +64,8 @@
     },
     "SUCCESS": {
       "MOVE_ORDER": "Order moved successfully."
-    }
+    },
+    "ELAPSED_TIME": "Order elapsed time"
   },
   "ORDER_DETAILS": {
     "TITLE": "Order {{number}}",

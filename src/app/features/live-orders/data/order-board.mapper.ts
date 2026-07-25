@@ -69,7 +69,7 @@ export function mapOrderDtoToCard(dto: OrderDto): Order {
   card.itemCount = itemCount;
 
   if (dto.status === 'received' || dto.status === 'preparing') {
-    card.elapsedLabel = formatElapsed(dto.elapsedSeconds);
+    card.elapsedSeconds = dto.elapsedSeconds;
     card.elapsedIcon = dto.delayed
       ? 'fa-solid fa-triangle-exclamation'
       : 'fa-regular fa-clock';

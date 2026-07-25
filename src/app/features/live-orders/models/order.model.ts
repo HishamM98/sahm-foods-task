@@ -31,7 +31,7 @@ export interface Order {
   itemCount?: number;
   summaryKey?: string;
   summaryParams?: Record<string, string | number>;
-  elapsedLabel?: string;
+  elapsedSeconds?: number;
   elapsedIcon?: string;
   elapsedTone?: OrderMetaTone;
   status?: OrderStatusMeta;

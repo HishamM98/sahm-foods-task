@@ -10,8 +10,6 @@
   align-items: stretch;
   height: 100%;
   min-height: 0;
-  overflow-x: auto;
-  overflow-y: hidden;
 }
 
 .board__state {
@@ -39,6 +37,53 @@
 .board__retry:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
+}
+
+.board__content {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  width: 100%;
+}
+
+.board__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 8px 16px;
+  gap: 8px;
+}
+
+.board__addOrder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-sm);
+  background: var(--surface-container);
+  color: var(--on-surface);
+  font: inherit;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  &:hover {
+    background: var(--surface-container-high);
+  }
+}
+
+.board__columns {
+  display: flex;
+  align-items: stretch;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .board__column {

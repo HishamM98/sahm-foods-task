@@ -30,6 +30,7 @@
   },
   "LIVE_ORDERS": {
     "BOARD_ARIA": "لوحة الطلبات المباشرة",
+    "ADD_ORDER": "إضافة طلب",
     "COLUMNS": {
       "RECEIVED": "مستلم",
       "PREPARING": "قيد التحضير",
@@ -63,7 +64,8 @@
     },
     "SUCCESS": {
       "MOVE_ORDER": "تم نقل الطلب بنجاح."
-    }
+    },
+    "ELAPSED_TIME": "الوقت الفائت على الطلب"
   },
   "ORDER_DETAILS": {
     "TITLE": "طلب {{number}}",

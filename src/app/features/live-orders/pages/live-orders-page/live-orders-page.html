@@ -11,29 +11,39 @@
     <p>{{ 'LIVE_ORDERS.LOADING' | translate }}</p>
   </div>
   } @else {
-  <ng-container cdkDropListGroup>
-    @for (column of columns(); track column.id) {
-    <section class="board__column" [class.board__column--completed]="column.id === 'completed'"
-      [style.--column-accent]="column.accent" [attr.aria-labelledby]="'column-' + column.id">
-      <header class="board__header">
-        <div class="board__title-wrap">
-          <span class="board__dot" aria-hidden="true"></span>
-          <h2 class="board__title" [id]="'column-' + column.id">
-            {{ column.titleKey | translate }}
-          </h2>
-        </div>
-        <span class="board__count">{{ columnCount(column) }}</span>
-      </header>
+  <div class="board__content">
+    <div class="board__actions">
+      <button class="board__addOrder" (click)="addOrder()">
+        <i class="fa-regular fa-plus"></i>
+        <span>{{ 'LIVE_ORDERS.ADD_ORDER' | translate }}</span>
+      </button>
+    </div>
 
-      <div class="board__cards" cdkDropList [id]="column.id" [cdkDropListData]="column.orders"
-        (cdkDropListDropped)="drop($event)">
-        @for (order of column.orders; track order.id) {
-        <app-order-card cdkDrag [cdkDragDisabled]="column.id === 'completed'" [order]="order" [accent]="column.accent"
-          [plain]="column.id === 'completed'" (openOrder)="openOrder($event)" (serveOrder)="onServe($event)" />
-        }
-      </div>
-    </section>
-    }
-  </ng-container>
+    <div cdkDropListGroup class="board__columns">
+      @for (column of columns(); track column.id) {
+      <section class="board__column" [class.board__column--completed]="column.id === 'completed'"
+        [style.--column-accent]="column.accent" [attr.aria-labelledby]="'column-' + column.id">
+        <header class="board__header">
+          <div class="board__title-wrap">
+            <span class="board__dot" aria-hidden="true"></span>
+            <h2 class="board__title" [id]="'column-' + column.id">
+              {{ column.titleKey | translate }}
+            </h2>
+          </div>
+          <span class="board__count">{{ columnCount(column) }}</span>
+        </header>
+
+        <div class="board__cards" cdkDropList [id]="column.id" [cdkDropListData]="column.orders"
+          (cdkDropListDropped)="drop($event)">
+          @for (order of column.orders; track order.id) {
+          <app-order-card cdkDrag [cdkDragDisabled]="column.id === 'completed'" [order]="order" [accent]="column.accent"
+            [plain]="column.id === 'completed'" (openOrder)="openOrder($event)" (serveOrder)="onServe($event)" />
+          }
+        </div>
+      </section>
+      }
+    </div>
+  </div>
+
   }
 </section>
