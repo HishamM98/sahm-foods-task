@@ -8,6 +8,7 @@ import {
   OnInit,
   signal,
   viewChild,
+  ElementRef,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
@@ -34,7 +35,7 @@ import { ToastService } from '../../../../shared/services/toast.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LiveOrdersPage implements OnInit {
-  dropdownRef = viewChild<HTMLDivElement>('dropdownRef');
+  dropdownRef = viewChild<ElementRef<HTMLDivElement>>('dropdownRef');
   private readonly ordersApi = inject(OrdersApiService);
   private readonly socket = inject(FakeSocketService);
   private readonly destroyRef = inject(DestroyRef);
@@ -174,7 +175,8 @@ export class LiveOrdersPage implements OnInit {
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
-    if (this.dropdownRef() && !this.dropdownRef()?.contains(event.target as Node)) {
+    const el = this.dropdownRef()?.nativeElement as HTMLElement | undefined;
+    if (el && !el.contains(event.target as Node)) {
       this.showChannelDropdown.set(false);
     }
   }

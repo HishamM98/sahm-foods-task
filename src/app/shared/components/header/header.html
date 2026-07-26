@@ -13,11 +13,87 @@
     </div>
 
     <div class="header__center">
-        <button type="button" class="header__search" [attr.aria-label]="'HEADER.SEARCH_ARIA' | translate">
-            <i class="fa-solid fa-magnifying-glass header__search-icon" aria-hidden="true"></i>
-            <span class="header__search-placeholder">{{ 'HEADER.SEARCH_PLACEHOLDER' | translate }}</span>
-            <kbd class="header__shortcut">{{ 'HEADER.SHORTCUT' | translate }}</kbd>
-        </button>
+        <div class="header__search-wrapper">
+            <label for="header__search" class="header__search-label">
+                <i class="fa-solid fa-magnifying-glass header__search-icon" aria-hidden="true"></i>
+                <input #searchInput type="search" class="header__search" id="header__search" name="header__search"
+                    autocomplete="off" [ngModel]="query()" (ngModelChange)="onInput($event)" (focus)="onFocus()"
+                    (keydown)="onKeydown($event)" [attr.aria-label]="'HEADER.SEARCH_ARIA' | translate" role="combobox"
+                    aria-autocomplete="list" [attr.aria-expanded]="isOpen()" aria-controls="header-search-dropdown"
+                    [placeholder]="'HEADER.SEARCH_PLACEHOLDER' | translate">
+                <kbd class="header__shortcut">{{ 'HEADER.SHORTCUT' | translate }}</kbd>
+            </label>
+
+            @if (isOpen()) {
+            <div class="header__search-dropdown" id="header-search-dropdown" role="listbox" #dropdown>
+
+                @if (categories().length) {
+                <div class="header__search-categories">
+                    @for (cat of categories(); track cat) {
+                    <button type="button" class="header__search-chip"
+                        [class.header__search-chip--active]="activeCategory() === cat" (click)="selectCategory(cat)">
+                        {{ cat }}
+                    </button>
+                    }
+                </div>
+                }
+
+                @if (showRecent()) {
+                @if (recentSearches().length) {
+                <div class="header__search-section">
+                    <div class="header__search-section-title">
+                        <span>{{ 'HEADER.RECENT' | translate }}</span>
+                        <button type="button" class="header__search-clear" (click)="clearRecent()">{{ 'HEADER.CLEAR' |
+                            translate }}</button>
+                    </div>
+                    @for (recent of recentSearches(); track recent) {
+                    <button type="button" class="header__search-item header__search-item--recent"
+                        (click)="selectRecent(recent)">
+                        <i class="fa-regular fa-clock" aria-hidden="true"></i>
+                        {{ recent }}
+                    </button>
+                    }
+                </div>
+                } @else {
+                <div class="header__search-empty">{{ 'HEADER.SEARCH_EMPTY' | translate }}</div>
+                }
+                } @else {
+                @if (isLoading()) {
+                <div class="header__search-empty">{{ 'HEADER.SEARCHING' | translate }}</div>
+                } @else if (hasError()) {
+                <div class="header__search-empty header__search-empty--error">{{ 'HEADER.SEARCH_ERROR' | translate }}
+                </div>
+                } @else if (results().length) {
+                <div class="header__search-section header__search-results" #resultsList
+                    (scroll)="onResultsScroll($event)">
+                    @for (item of results(); track item.id; let i = $index) {
+                    <button type="button" class="header__search-item" [attr.data-index]="i"
+                        [class.header__search-item--active]="activeIndex() === i" (mouseenter)="activeIndex.set(i)"
+                        (click)="select(item)" role="option" [attr.aria-selected]="activeIndex() === i">
+                        <div class="header__search-item-title">{{ item.name }}</div>
+                        <span class="header__search-item-category">{{ item.category }}</span>
+                    </button>
+                    }
+                    @if (isLoadingMore()) {
+                    <div class="header__search-loading-more">
+                        <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
+                        {{ 'HEADER.LOADING_MORE' | translate }}
+                    </div>
+                    } @else if (hasMore()) {
+                    <button type="button" class="header__search-load-more" (click)="loadMore()">
+                        {{ 'HEADER.LOAD_MORE' | translate : { remaining: total() - results().length } }}
+                    </button>
+                    } @else if (results().length > resultsPerPage) {
+                    <div class="header__search-end">{{ 'HEADER.END_OF_RESULTS' | translate }}</div>
+                    }
+                </div>
+                } @else {
+                <div class="header__search-empty">{{ 'HEADER.NO_RESULTS' | translate : { query: query() } }}</div>
+                }
+                }
+            </div>
+            }
+        </div>
     </div>
 
     <div class="header__right">

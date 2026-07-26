@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { ProductDto } from '../models/api.types';
@@ -18,6 +18,16 @@ interface ProductsResponse {
 export class ProductsApiService {
   private readonly http = inject(HttpClient);
   private readonly base = `${environment.apiBaseUrl}/products`;
+  readonly recentSearches = computed(() => this._recentSearches());
+  private readonly _recentSearches = signal<string[]>([]);
+
+  addRecentSearch(search: string): void {
+    this._recentSearches.update(searches => [search, ...searches].slice(0, 10));
+  }
+
+  clearRecentSearches(): void {
+    this._recentSearches.set([]);
+  }
 
   search(options: {
     q?: string;
@@ -35,7 +45,7 @@ export class ProductsApiService {
 
   getById(id: string): Observable<ProductDto> {
     return this.http
-      .get<{ data: ProductDto }>(`${this.base}/${id}`)
+      .get<{ data: ProductDto; }>(`${this.base}/${id}`)
       .pipe(map((res) => res.data));
   }
 }

@@ -97,6 +97,7 @@ html[lang='ar'] body {
   }
   ::-webkit-scrollbar-thumb {
     background: var(--outline);
+    border-radius: var(--radius-full);
   }
 }
 
