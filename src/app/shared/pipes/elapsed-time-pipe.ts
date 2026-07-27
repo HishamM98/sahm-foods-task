@@ -11,17 +11,19 @@ export class ElapsedTimePipe implements PipeTransform {
 
   transform(value: number | null | undefined): string {
     if (value == null || isNaN(value)) {
-      return '00:00';
+      return '00:00:00';
     }
 
     const currentLang = this.translate.getCurrentLang() || 'ar';
-    const mins = Math.floor(value / 60);
+    const hours = Math.floor(value / 3600);
+    const mins = Math.floor((value % 3600) / 60);
     const secs = Math.floor(value % 60);
 
     const formatter = new Intl.NumberFormat(currentLang, { minimumIntegerDigits: 2 });
+    const formattedHours = formatter.format(hours);
     const formattedMins = formatter.format(mins);
     const formattedSecs = formatter.format(secs);
 
-    return `${formattedMins}:${formattedSecs}`;
+    return `${formattedHours}:${formattedMins}:${formattedSecs}`;
   }
 }
