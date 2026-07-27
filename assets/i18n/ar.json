@@ -1,0 +1,250 @@
+{
+  "HEADER": {
+    "BRAND": "سهم فود",
+    "LOAD": "الحمل",
+    "LOAD_ARIA": "حمل المطبخ: مرتفع",
+    "SEARCH_PLACEHOLDER": "ابحث عن المنتجات...",
+    "SEARCH_ARIA": "البحث في الطلبات",
+    "NETWORK_ONLINE": "الشبكة: متصل",
+    "NETWORK_OFFLINE": "الشبكة: غير متصل",
+    "LANG_TOGGLE_ARIA": "التبديل إلى الإنجليزية",
+    "NOTIFICATIONS_ARIA": "الإشعارات",
+    "HISTORY_ARIA": "سجل الطلبات",
+    "LOAD_LOW": "منخفض",
+    "LOAD_MEDIUM": "متوسط",
+    "LOAD_HIGH": "مرتفع",
+    "LOAD_CRITICAL": "حرج",
+    "SEARCH_EMPTY": "ابدأ الكتابة للبحث",
+    "SEARCHING": "جاري البحث…",
+    "SEARCH_ERROR": "حدث خطأ. حاول مرة أخرى.",
+    "CLEAR": "مسح",
+    "MORE_RESULTS": "نتائج إضافية…",
+    "NO_RESULTS": "لا توجد نتائج لـ \"{{query}}\"",
+    "RECENT": "البحث الأخير",
+    "LOAD_MORE": "تحميل المزيد ({{remaining}} متبقي)",
+    "END_OF_RESULTS": "نهاية النتائج",
+    "LOADING_MORE": "جاري تحميل المزيد…",
+    "LOADING_MORE_ARIA": "جاري تحميل المزيد…",
+    "LOADING_MORE_LABEL": "جاري تحميل المزيد…",
+    "LOADING_MORE_DESCRIPTION": "جاري تحميل المزيد…",
+    "LOADING_MORE_ERROR": "تعذر تحميل المزيد…",
+    "LOADING_MORE_ERROR_DESCRIPTION": "تعذر تحميل المزيد…",
+    "LOADING_MORE_ERROR_BUTTON": "تحميل المزيد",
+    "LOADING_MORE_ERROR_BUTTON_DESCRIPTION": "تحميل المزيد"
+  },
+  "SIDEBAR": {
+    "NAV_ARIA": "التنقل الرئيسي",
+    "TERMINAL": "محطة سهم",
+    "STATION": "المحطة 01 • المطبخ الرئيسي",
+    "DASHBOARD": "لوحة التحكم",
+    "LIVE_ORDERS": "الطلبات المباشرة",
+    "MENU": "القائمة",
+    "HISTORY": "السجل",
+    "SETTINGS": "الإعدادات",
+    "HELP": "المساعدة",
+    "LOGOUT": "تسجيل الخروج"
+  },
+  "LIVE_ORDERS": {
+    "BOARD_ARIA": "لوحة الطلبات المباشرة",
+    "ADD_ORDER": "إضافة طلب",
+    "COLUMNS": {
+      "RECEIVED": "مستلم",
+      "PREPARING": "قيد التحضير",
+      "READY": "جاهز",
+      "DELIVERED": "تم التسليم",
+      "COMPLETED": "مكتمل"
+    },
+    "CHANNEL": {
+      "SELECT": "اختر نوع الطلب",
+      "DELIVERY": "توصيل",
+      "WALK_IN": "حضوري",
+      "ONLINE": "أونلاين"
+    },
+    "ITEMS": "{{count}} عناصر",
+    "ITEM_ONE": "عنصر واحد",
+    "CLOSED_AGO": "أُغلق منذ {{minutes}} د",
+    "STATUS": {
+      "NEW": "جديد",
+      "DELAYED": "متأخر",
+      "CALLING": "جارٍ النداء",
+      "PICKED_UP": "تم الاستلام"
+    },
+    "ACTIONS": {
+      "SERVE": "تقديم"
+    },
+    "LOADING": "جاري تحميل الطلبات المباشرة…",
+    "RETRY": "إعادة المحاولة",
+    "ERRORS": {
+      "LOAD_FAILED": "تعذر تحميل الطلبات من واجهة المحاكاة.",
+      "SERVE_FAILED": "تعذر تعليم الطلب كمُقدَّم.",
+      "MOVE_FAILED": "تعذر نقل الطلب. تم إعادة اللوحة.",
+      "ADD_FAILED": "تعذر إضافة الطلب.",
+      "ADD_FAILED_OFFLINE": "تعذر إضافة الطلب. تم إضافته إلى قائمة الإنتظار.",
+      "SERVE_FAILED_OFFLINE": "تعذر تعليم الطلب كمُقدَّم. تم إعادته إلى قائمة الإنتظار.",
+      "MOVE_FAILED_OFFLINE": "تعذر نقل الطلب. تم إعادته إلى قائمة الإنتظار."
+    },
+    "SUCCESS": {
+      "MOVE_ORDER": "تم نقل الطلب بنجاح.",
+      "ADD_ORDER": "تم إضافة الطلب بنجاح.",
+      "SERVE_ORDER": "تم تقديم الطلب بنجاح."
+    },
+    "ELAPSED_TIME": "الوقت الفائت على الطلب"
+  },
+  "ORDER_DETAILS": {
+    "TITLE": "طلب {{number}}",
+    "PLACED": "تم الطلب {{time}}",
+    "PLACED_ETA": "تم الطلب {{time}} • الوصول المتوقع: {{eta}} (متبقي {{remaining}} د)",
+    "LOADING": "جاري تحميل تفاصيل الطلب…",
+    "ARIA": {
+      "DIALOG": "تفاصيل الطلب {{number}}"
+    },
+    "CUSTOMER": {
+      "TITLE": "معلومات العميل",
+      "ADDRESS": "عنوان التوصيل"
+    },
+    "ITEMS": {
+      "TITLE": "عناصر الطلب"
+    },
+    "TIMELINE": {
+      "TITLE": "الخط الزمني",
+      "RECEIVED": "تم استلام الطلب",
+      "SENT_TO_KITCHEN": "أُرسل إلى المطبخ",
+      "PREPARING": "تحضير العناصر",
+      "READY": "جاهز للاستلام",
+      "DELIVERED": "في الطريق",
+      "COMPLETED": "مكتمل",
+      "IN_PROGRESS": "قيد التنفيذ"
+    },
+    "ACTIONS": {
+      "CLOSE": "إغلاق",
+      "CANCEL": "إلغاء الطلب",
+      "PRINT": "طباعة الإيصال",
+      "MOVE_TO_PREPARING": "نقل إلى التحضير",
+      "MOVE_TO_READY": "نقل إلى الجاهز",
+      "MOVE_TO_DELIVERED": "تعليم كتم التسليم",
+      "MOVE_TO_COMPLETED": "إكمال الطلب"
+    },
+    "AI": {
+      "TITLE": "مساعد الذكاء الاصطناعي",
+      "PROMPT_LABEL": "اسأل المساعد",
+      "PROMPT_PLACEHOLDER": "اسأل المساعد عن مزيد من الرؤى...",
+      "SEND": "إرسال",
+      "CALL": "اتصال بالعميل",
+      "ROUTE": "مسار نشط",
+      "DISTANCE": "1.2 ميل من المركز",
+      "TAGS": {
+        "UPSELL": "اقتراح زيادة البيع"
+      }
+    },
+    "ERRORS": {
+      "LOAD_FAILED": "تعذر تحميل هذا الطلب.",
+      "MOVE_FAILED": "تعذر تحديث حالة الطلب."
+    }
+  },
+  "DASHBOARD": {
+    "ARIA": "لوحة تحكم عمليات المطبخ",
+    "TITLE": "لوحة تحكم المطبخ",
+    "SUBTITLE": "عرض مباشر للطلبات والحمل والعاملين",
+    "ACTIONS": {
+      "REASSIGN": "إعادة توزيع الطاقم",
+      "PAUSE": "إيقاف الطلبات الجديدة",
+      "BUMP": "نقل للمقدمة",
+      "VIEW": "عرض"
+    },
+    "GAUGE": {
+      "ARIA": "مقياس حمل المطبخ",
+      "PERCENT_ARIA": "حمل المطبخ عند {{percent}} بالمئة",
+      "ACTIVE_TICKETS": "الطلبات النشطة",
+      "AVG_DWELL": "متوسط زمن الانتظار",
+      "CRITICAL": "حرج",
+      "HEAVY": "مرتفع",
+      "MEDIUM": "متوسط",
+      "LIGHT": "منخفض",
+      "SYSTEM_CRITICAL": "النظام في حالة حرجة",
+      "SYSTEM_HIGH": "النظام تحت ضغط",
+      "SYSTEM_MEDIUM": "النظام معتدل",
+      "SYSTEM_LOW": "النظام طبيعي"
+    },
+    "SCHEDULE": {
+      "TITLE": "الجدول الزمني المتوقع للإنجاز",
+      "LAST_UPDATE": "آخر تحديث: منذ {{seconds}} ثانية",
+      "LANE_DELIVERY": "توصيل سريع",
+      "LANE_WALK_IN": "حضوري",
+      "LANE_ONLINE": "أونلاين",
+      "LANE_OTHER": "طلبات أخرى",
+      "ON_TRACK": "ضمن الجدول",
+      "WAIT_MINUTES": "انتظار {{minutes}} د",
+      "EMPTY": "لا توجد طلبات نشطة حاليًا",
+      "STATION_OPERATIONAL": "يعمل بكفاءة",
+      "STATION_BOTTLENECK": "اختناق",
+      "STATION_KITCHEN_01": "المطبخ ١",
+      "STATION_02": "المحطة ٢",
+      "TOTAL_STAFF": "إجمالي العاملين",
+      "STAFF_ACTIVE": "{{count}} نشط"
+    },
+
+    "QUEUE": {
+      "TITLE": "الطلبات المتأثرة",
+      "FILTER": "متأخر",
+      "FILTER_COUNT": "{{count}} متأخر",
+      "MENU_ARIA": "تصفية الطلبات",
+      "COLS": {
+        "ORDER": "الطلب",
+        "PRIORITY": "الأولوية",
+        "ITEMS": "الأصناف",
+        "ELAPSED": "الوقت المنقضي",
+        "TREND": "الاتجاه",
+        "ACTIONS": "إجراءات"
+      },
+      "PRIORITY": {
+        "HIGH": "عالية",
+        "MEDIUM": "متوسطة",
+        "LOW": "منخفضة"
+      },
+      "ITEMS_COUNT": "{{count}} صنف",
+      "TREND": {
+        "DELAY": "تأخر",
+        "STABLE": "مستقر",
+        "EARLY": "متقدم"
+      },
+      "ACTION_VIEW": "عرض",
+      "EMPTY": "لا توجد طلبات متأثرة — المطبخ يعمل بسلاسة"
+    },
+    "STATUS": {
+      "KITCHEN_OPS": "عمليات المطبخ 01",
+      "STATION_02": "المحطة 02",
+      "TOTAL_STAFF": "إجمالي الطاقم",
+      "OPERATIONAL": "يعمل",
+      "BOTTLENECK": "اختناق",
+      "STAFF_ACTIVE": "08 نشط"
+    },
+    "PRIORITY": {
+      "HIGH": "أولوية عالية",
+      "MEDIUM": "متوسطة",
+      "LOW": "منخفضة"
+    },
+    "TREND": {
+      "DELAY": "+4د تأخير",
+      "STABLE": "مستقر",
+      "EARLY": "-2د مبكر"
+    },
+    "STAFF": {
+      "TITLE": "نظرة عامة على توزيع الطاقم",
+      "LEGEND_PREP": "تحضير",
+      "LEGEND_GRILL": "شواء",
+      "LEGEND_EXPO": "تجهيز",
+      "PREP_1": "تحضير 1",
+      "PREP_2": "تحضير 2",
+      "GRILL_1": "شواء 1",
+      "EXPO": "تجهيز",
+      "OPEN": "مفتوح",
+      "ASSIGN": "تعيين"
+    }
+  },
+  "TOAST": {
+    "INFO": "معلومة",
+    "ERROR": "حدث خطأ",
+    "SUCCESS": "عملية ناجحة",
+    "WARNING": "تحذير"
+  }
+}

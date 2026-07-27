@@ -1,0 +1,250 @@
+{
+  "HEADER": {
+    "BRAND": "Sahm Food",
+    "LOAD": "LOAD",
+    "LOAD_HIGH": "High",
+    "LOAD_ARIA": "Kitchen load: High",
+    "SEARCH_PLACEHOLDER": "Search products...",
+    "SEARCH_ARIA": "Search orders",
+    "NETWORK_ONLINE": "Network: Online",
+    "NETWORK_OFFLINE": "Network: Offline",
+    "LANG_TOGGLE_ARIA": "Switch to Arabic",
+    "NOTIFICATIONS_ARIA": "Notifications",
+    "HISTORY_ARIA": "Order history",
+    "LOAD_LOW": "Low",
+    "LOAD_MEDIUM": "Medium",
+    "LOAD_CRITICAL": "Critical",
+    "SEARCH_EMPTY": "Start typing to search",
+    "SEARCHING": "Searching…",
+    "SEARCH_ERROR": "Something went wrong. Try again.",
+    "CLEAR": "Clear",
+    "MORE_RESULTS": "More results — refine your search",
+    "NO_RESULTS": "No results for \"{{query}}\"",
+    "RECENT": "Recent",
+    "LOAD_MORE": "Load more ({{remaining}} remaining)",
+    "END_OF_RESULTS": "End of results",
+    "LOADING_MORE": "Loading more…",
+    "LOADING_MORE_ARIA": "Loading more…",
+    "LOADING_MORE_LABEL": "Loading more…",
+    "LOADING_MORE_DESCRIPTION": "Loading more…",
+    "LOADING_MORE_ERROR": "Could not load more…",
+    "LOADING_MORE_ERROR_DESCRIPTION": "Could not load more…",
+    "LOADING_MORE_ERROR_BUTTON": "Load more",
+    "LOADING_MORE_ERROR_BUTTON_DESCRIPTION": "Load more"
+  },
+  "SIDEBAR": {
+    "NAV_ARIA": "Main navigation",
+    "TERMINAL": "Sahm Terminal",
+    "STATION": "Station 01 • Main Kitchen",
+    "DASHBOARD": "Dashboard",
+    "LIVE_ORDERS": "Live Orders",
+    "MENU": "Menu",
+    "HISTORY": "History",
+    "SETTINGS": "Settings",
+    "HELP": "Help",
+    "LOGOUT": "Logout"
+  },
+  "LIVE_ORDERS": {
+    "BOARD_ARIA": "Live orders board",
+    "ADD_ORDER": "Add order",
+    "COLUMNS": {
+      "RECEIVED": "Received",
+      "PREPARING": "Preparing",
+      "READY": "Ready",
+      "DELIVERED": "Delivered",
+      "COMPLETED": "Completed"
+    },
+    "CHANNEL": {
+      "SELECT": "Select order type",
+      "DELIVERY": "Delivery",
+      "WALK_IN": "Walk-in",
+      "ONLINE": "Online"
+    },
+    "ITEMS": "{{count}} items",
+    "ITEM_ONE": "{{count}} item",
+    "CLOSED_AGO": "Closed {{minutes}}m ago",
+    "STATUS": {
+      "NEW": "New",
+      "DELAYED": "Delayed",
+      "CALLING": "Calling",
+      "PICKED_UP": "Picked up"
+    },
+    "ACTIONS": {
+      "SERVE": "Serve"
+    },
+    "LOADING": "Loading live orders…",
+    "RETRY": "Retry",
+    "ERRORS": {
+      "LOAD_FAILED": "Could not load orders from the mock API.",
+      "SERVE_FAILED": "Could not mark order as served.",
+      "MOVE_FAILED": "Could not move order. Board was reverted.",
+      "ADD_FAILED": "Could not add order.",
+      "ADD_FAILED_OFFLINE": "Could not add order. Queued for sync.",
+      "SERVE_FAILED_OFFLINE": "Could not mark order as served. Queued for sync.",
+      "MOVE_FAILED_OFFLINE": "Could not move order. Queued for sync."
+    },
+    "SUCCESS": {
+      "MOVE_ORDER": "Order moved successfully.",
+      "ADD_ORDER": "Order added successfully.",
+      "SERVE_ORDER": "Order served successfully."
+    },
+    "ELAPSED_TIME": "Order elapsed time"
+  },
+  "ORDER_DETAILS": {
+    "TITLE": "Order {{number}}",
+    "PLACED": "Placed {{time}}",
+    "PLACED_ETA": "Placed {{time}} • ETA: {{eta}} ({{remaining}}m remaining)",
+    "LOADING": "Loading order details…",
+    "ARIA": {
+      "DIALOG": "Order details for {{number}}"
+    },
+    "CUSTOMER": {
+      "TITLE": "Customer Information",
+      "ADDRESS": "Delivery Address"
+    },
+    "ITEMS": {
+      "TITLE": "Order Items"
+    },
+    "TIMELINE": {
+      "TITLE": "Timeline",
+      "RECEIVED": "Order Received",
+      "SENT_TO_KITCHEN": "Sent to Kitchen",
+      "PREPARING": "Preparing Items",
+      "READY": "Ready for Pickup",
+      "DELIVERED": "Out for Delivery",
+      "COMPLETED": "Completed",
+      "IN_PROGRESS": "In Progress"
+    },
+    "ACTIONS": {
+      "CLOSE": "Close",
+      "CANCEL": "Cancel Order",
+      "PRINT": "Print Receipt",
+      "MOVE_TO_PREPARING": "Move to Preparing",
+      "MOVE_TO_READY": "Move to Ready",
+      "MOVE_TO_DELIVERED": "Mark Delivered",
+      "MOVE_TO_COMPLETED": "Complete Order"
+    },
+    "AI": {
+      "TITLE": "AI Assistant",
+      "PROMPT_LABEL": "Ask AI",
+      "PROMPT_PLACEHOLDER": "Ask AI for more insights...",
+      "SEND": "Send message",
+      "CALL": "Call customer",
+      "ROUTE": "Active Route",
+      "DISTANCE": "1.2 miles from Hub",
+      "TAGS": {
+        "UPSELL": "Upsell Suggestion"
+      }
+    },
+    "ERRORS": {
+      "LOAD_FAILED": "Could not load this order.",
+      "MOVE_FAILED": "Could not update order status."
+    }
+  },
+  "DASHBOARD": {
+    "ARIA": "Kitchen operations dashboard",
+    "TITLE": "Kitchen Dashboard",
+    "SUBTITLE": "Live view of orders, load, and staffing",
+    "ACTIONS": {
+      "REASSIGN": "Reassign Staff",
+      "PAUSE": "Pause New Orders",
+      "BUMP": "Bump to Front",
+      "VIEW": "View"
+    },
+    "GAUGE": {
+      "ARIA": "Kitchen load gauge",
+      "PERCENT_ARIA": "Kitchen load at {{percent}} percent",
+      "ACTIVE_TICKETS": "Active Tickets",
+      "AVG_DWELL": "Avg Dwell",
+      "CRITICAL": "Critical",
+      "HEAVY": "Heavy",
+      "MEDIUM": "Medium",
+      "LIGHT": "Light",
+      "SYSTEM_CRITICAL": "System Critical",
+      "SYSTEM_HIGH": "System Under Load",
+      "SYSTEM_MEDIUM": "System Moderate",
+      "SYSTEM_LOW": "System Normal"
+    },
+    "SCHEDULE": {
+      "TITLE": "Est. Completion Schedule",
+      "LAST_UPDATE": "Last update: {{seconds}}s ago",
+      "LANE_DELIVERY": "Expedited / Delivery",
+      "LANE_WALK_IN": "Standard Walk-in",
+      "LANE_ONLINE": "Online Orders",
+      "LANE_OTHER": "Other Orders",
+      "ON_TRACK": "On Track",
+      "WAIT_MINUTES": "{{minutes}}m wait",
+      "EMPTY": "No active orders right now",
+      "STATION_OPERATIONAL": "Operational",
+      "STATION_BOTTLENECK": "Bottleneck",
+      "STATION_KITCHEN_01": "Kitchen Ops 01",
+      "STATION_02": "Station 02",
+      "TOTAL_STAFF": "Total Staff",
+      "STAFF_ACTIVE": "{{count}} Active"
+    },
+
+    "QUEUE": {
+      "TITLE": "Impacted Orders",
+      "FILTER": "Delayed",
+      "FILTER_COUNT": "{{count}} delayed",
+      "MENU_ARIA": "Filter orders",
+      "COLS": {
+        "ORDER": "Order",
+        "PRIORITY": "Priority",
+        "ITEMS": "Items",
+        "ELAPSED": "Elapsed",
+        "TREND": "Trend",
+        "ACTIONS": "Actions"
+      },
+      "PRIORITY": {
+        "HIGH": "High",
+        "MEDIUM": "Medium",
+        "LOW": "Low"
+      },
+      "ITEMS_COUNT": "{{count}} items",
+      "TREND": {
+        "DELAY": "Delaying",
+        "STABLE": "Stable",
+        "EARLY": "Ahead"
+      },
+      "ACTION_VIEW": "View",
+      "EMPTY": "No impacted orders — kitchen is running smoothly"
+    },
+    "STATUS": {
+      "KITCHEN_OPS": "Kitchen Ops 01",
+      "STATION_02": "Station 02",
+      "TOTAL_STAFF": "Total Staff",
+      "OPERATIONAL": "Operational",
+      "BOTTLENECK": "Bottleneck",
+      "STAFF_ACTIVE": "08 Active"
+    },
+    "PRIORITY": {
+      "HIGH": "High Priority",
+      "MEDIUM": "Medium",
+      "LOW": "Low"
+    },
+    "TREND": {
+      "DELAY": "+4m delay",
+      "STABLE": "Stable",
+      "EARLY": "-2m early"
+    },
+    "STAFF": {
+      "TITLE": "Staff Allocation Overview",
+      "LEGEND_PREP": "Prep",
+      "LEGEND_GRILL": "Grill",
+      "LEGEND_EXPO": "Expo",
+      "PREP_1": "Prep 1",
+      "PREP_2": "Prep 2",
+      "GRILL_1": "Grill 1",
+      "EXPO": "Expo",
+      "OPEN": "Open",
+      "ASSIGN": "Assign"
+    }
+  },
+  "TOAST": {
+    "INFO": "Info",
+    "ERROR": "An error occurred",
+    "SUCCESS": "Operation successful",
+    "WARNING": "Warning"
+  }
+}
