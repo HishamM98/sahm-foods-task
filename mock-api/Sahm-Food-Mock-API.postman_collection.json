@@ -170,35 +170,6 @@
             }
           },
           "response": []
-        },
-        {
-          "name": "Set kitchen load",
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"percent\": 88\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{protocol}}://{{host}}:{{port}}/api/kitchen/load",
-              "protocol": "{{protocol}}",
-              "host": ["{{host}}"],
-              "port": "{{port}}",
-              "path": ["api", "kitchen", "load"]
-            }
-          },
-          "response": []
         }
       ]
     },

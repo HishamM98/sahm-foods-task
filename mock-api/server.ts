@@ -84,17 +84,7 @@ app.get('/api/products/:id', (req, res) => {
 });
 
 app.get('/api/kitchen/load', (_req, res) => {
-  res.json({ data: mockDb.kitchenLoad });
-});
-
-app.put('/api/kitchen/load', (req, res) => {
-  const percent = req.body?.percent;
-  if (typeof percent !== 'number') {
-    res.status(400).json({ message: 'percent is required' });
-    return;
-  }
-  const load = mockDb.setKitchenLoad(Math.min(100, Math.max(0, percent)));
-  res.json({ data: load });
+  res.json({ data: mockDb.getKitchenLoad() });
 });
 
 app.get('/api/ai/orders/:orderId/suggestions', async (req, res) => {
