@@ -50,6 +50,10 @@ class FakeSocketServer {
     this.publish('order.updated', order);
   }
 
+  publishOrderCreated(order: OrderDto): void {
+    this.publish('order.created', order);
+  }
+
   publishKitchenLoad(load: KitchenLoadDto): void {
     this.publish('kitchen.load.changed', load);
   }
@@ -68,7 +72,7 @@ class FakeSocketServer {
     }
 
     const newOrder = mockDb.addOrder();
-    this.publish('order.created', newOrder);
+    this.publishOrderCreated(newOrder);
     this.publishKitchenLoad(mockDb.getKitchenLoad());
   }
 }

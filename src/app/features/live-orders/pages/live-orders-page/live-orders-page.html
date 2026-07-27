@@ -7,8 +7,45 @@
     </button>
   </div>
   } @else if (loading() && columns().every((c) => c.orders.length === 0)) {
-  <div class="board__state" aria-live="polite">
-    <p>{{ 'LIVE_ORDERS.LOADING' | translate }}</p>
+  <div class="board__content" aria-live="polite">
+    <div class="board__actions">
+      <p-skeleton width="140px" height="38px" borderRadius="8px" />
+      <p-skeleton width="130px" height="38px" borderRadius="8px" />
+    </div>
+
+    <div class="board__columns">
+      @for (col of [1, 2, 3, 4, 5]; track $index) {
+      <section class="board__column">
+        <header class="board__header">
+          <div class="board__title-wrap">
+            <span class="board__dot" aria-hidden="true"></span>
+            <p-skeleton width="100px" height="20px" borderRadius="4px" />
+          </div>
+          <p-skeleton width="24px" height="20px" borderRadius="12px" />
+        </header>
+
+        <div class="board__cards">
+          <div class="board__card-skeleton">
+            <div class="board__card-skeleton-header">
+              <p-skeleton width="70px" height="18px" />
+              <p-skeleton width="45px" height="18px" />
+            </div>
+            <p-skeleton width="100%" height="14px" />
+            <p-skeleton width="60%" height="14px" />
+          </div>
+
+          <div class="board__card-skeleton">
+            <div class="board__card-skeleton-header">
+              <p-skeleton width="85px" height="18px" />
+              <p-skeleton width="35px" height="18px" />
+            </div>
+            <p-skeleton width="100%" height="14px" />
+            <p-skeleton width="75%" height="14px" />
+          </div>
+        </div>
+      </section>
+      }
+    </div>
   </div>
   } @else {
   <div class="board__content">

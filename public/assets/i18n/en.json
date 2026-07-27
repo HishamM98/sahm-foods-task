@@ -81,7 +81,9 @@
       "ADD_FAILED": "Could not add order."
     },
     "SUCCESS": {
-      "MOVE_ORDER": "Order moved successfully."
+      "MOVE_ORDER": "Order moved successfully.",
+      "ADD_ORDER": "Order added successfully.",
+      "SERVE_ORDER": "Order served successfully."
     },
     "ELAPSED_TIME": "Order elapsed time"
   },

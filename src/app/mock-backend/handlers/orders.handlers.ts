@@ -14,6 +14,7 @@ export const ordersHandlers = [
     if (failed) return failed;
 
     const order = mockDb.addOrder();
+    fakeSocketServer.publishOrderCreated(order);
     return HttpResponse.json({ data: order });
   }),
 

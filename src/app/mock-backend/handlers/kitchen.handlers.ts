@@ -1,7 +1,6 @@
 import { http, HttpResponse } from 'msw';
 import { mockBackendConfig } from '../config';
 import { mockDb } from '../data/db';
-import { fakeSocketServer } from '../fake-socket-server';
 import { maybeFail, withMockLatency } from '../utils/http-sim';
 
 const base = mockBackendConfig.apiPrefix;
