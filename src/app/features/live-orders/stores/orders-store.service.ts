@@ -197,7 +197,6 @@ export class OrdersStore {
     this.socket.events().pipe(
       filter(event => event.type === 'order.updated' || event.type === 'order.created'),
       tap(event => {
-        debugger;
         const order = event.payload as OrderDto;
         const activeFilter = this.currentFilterState();
 
