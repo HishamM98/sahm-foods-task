@@ -142,9 +142,9 @@
     }
   },
   "DASHBOARD": {
-    "ARIA": "Kitchen load analysis dashboard",
-    "TITLE": "Kitchen Load Analysis",
-    "SUBTITLE": "Real-time throughput and allocation at Station 01",
+    "ARIA": "Kitchen operations dashboard",
+    "TITLE": "Kitchen Dashboard",
+    "SUBTITLE": "Live view of orders, load, and staffing",
     "ACTIONS": {
       "REASSIGN": "Reassign Staff",
       "PAUSE": "Pause New Orders",
@@ -152,28 +152,63 @@
       "VIEW": "View"
     },
     "GAUGE": {
-      "ARIA": "System load gauge",
-      "PERCENT_ARIA": "Kitchen load {{percent}} percent",
-      "SYSTEM_CRITICAL": "System Critical",
-      "SYSTEM_HIGH": "System High",
-      "SYSTEM_MEDIUM": "System Moderate",
-      "SYSTEM_LOW": "System Nominal",
-      "CRITICAL": "Critical Load",
-      "HEAVY": "Heavy Load",
-      "MEDIUM": "Moderate Load",
-      "LIGHT": "Light Load",
+      "ARIA": "Kitchen load gauge",
+      "PERCENT_ARIA": "Kitchen load at {{percent}} percent",
       "ACTIVE_TICKETS": "Active Tickets",
-      "AVG_DWELL": "Avg Dwell"
+      "AVG_DWELL": "Avg Dwell",
+      "CRITICAL": "Critical",
+      "HEAVY": "Heavy",
+      "MEDIUM": "Medium",
+      "LIGHT": "Light",
+      "SYSTEM_CRITICAL": "System Critical",
+      "SYSTEM_HIGH": "System Under Load",
+      "SYSTEM_MEDIUM": "System Moderate",
+      "SYSTEM_LOW": "System Normal"
     },
     "SCHEDULE": {
       "TITLE": "Est. Completion Schedule",
       "LAST_UPDATE": "Last update: {{seconds}}s ago",
-      "EXPEDITED": "Expedited / Delivery",
-      "DINE_IN": "Standard Dine-in",
-      "PREORDERS": "Pre-orders / Scheduled",
-      "WAIT_12M": "12m wait",
-      "WAIT_22M": "22m wait",
-      "ON_TRACK": "On Track"
+      "LANE_DELIVERY": "Expedited / Delivery",
+      "LANE_WALK_IN": "Standard Walk-in",
+      "LANE_ONLINE": "Online Orders",
+      "LANE_OTHER": "Other Orders",
+      "ON_TRACK": "On Track",
+      "WAIT_MINUTES": "{{minutes}}m wait",
+      "EMPTY": "No active orders right now",
+      "STATION_OPERATIONAL": "Operational",
+      "STATION_BOTTLENECK": "Bottleneck",
+      "STATION_KITCHEN_01": "Kitchen Ops 01",
+      "STATION_02": "Station 02",
+      "TOTAL_STAFF": "Total Staff",
+      "STAFF_ACTIVE": "{{count}} Active"
+    },
+
+    "QUEUE": {
+      "TITLE": "Impacted Orders",
+      "FILTER": "Delayed",
+      "FILTER_COUNT": "{{count}} delayed",
+      "MENU_ARIA": "Filter orders",
+      "COLS": {
+        "ORDER": "Order",
+        "PRIORITY": "Priority",
+        "ITEMS": "Items",
+        "ELAPSED": "Elapsed",
+        "TREND": "Trend",
+        "ACTIONS": "Actions"
+      },
+      "PRIORITY": {
+        "HIGH": "High",
+        "MEDIUM": "Medium",
+        "LOW": "Low"
+      },
+      "ITEMS_COUNT": "{{count}} items",
+      "TREND": {
+        "DELAY": "Delaying",
+        "STABLE": "Stable",
+        "EARLY": "Ahead"
+      },
+      "ACTION_VIEW": "View",
+      "EMPTY": "No impacted orders — kitchen is running smoothly"
     },
     "STATUS": {
       "KITCHEN_OPS": "Kitchen Ops 01",
@@ -182,19 +217,6 @@
       "OPERATIONAL": "Operational",
       "BOTTLENECK": "Bottleneck",
       "STAFF_ACTIVE": "08 Active"
-    },
-    "QUEUE": {
-      "TITLE": "Impacted Orders Queue",
-      "FILTER": "Filter: All High Priority",
-      "MENU_ARIA": "Queue options",
-      "COLS": {
-        "ORDER": "Order #",
-        "PRIORITY": "Priority",
-        "ITEMS": "Items",
-        "ELAPSED": "Elapsed",
-        "TREND": "Wait Trend",
-        "ACTIONS": "Actions"
-      }
     },
     "PRIORITY": {
       "HIGH": "High Priority",

@@ -1,7 +1,7 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { OrdersApiService } from '../../../core/api/orders-api.service';
 import { OrderDto, OrderStatus } from '../../../core/models/api.types';
-import { OrderChannel } from '../models/order.model';
+import { ChannelWaitStats, OrderChannel } from '../models/order.model';
 import { FakeSocketService } from '../../../core/services/fake-socket.service';
 import { filter, Observable, of, take, tap } from 'rxjs';
 import { OfflineQueueService, QueuedAction } from '../../../core/services/offline-http-queue.service';
@@ -40,6 +40,67 @@ export class OrdersStore {
   readonly completedOrdersCount = computed(() =>
     this.orders().filter(o => o.status === 'delivered' || o.status === 'completed').length
   );
+
+  readonly activeOrders = computed(() =>
+    this.orders().filter(o => !o.closedAt)
+  );
+
+  readonly activeOrdersCount = computed(() => this.activeOrders().length);
+
+  readonly delayedOrders = computed(() =>
+    this.activeOrders().filter(o => o.delayed)
+  );
+
+  readonly delayedOrdersCount = computed(() => this.delayedOrders().length);
+
+  readonly newOrdersCount = computed(() =>
+    this.orders().filter(o => o.isNew).length
+  );
+
+  readonly callingOrders = computed(() =>
+    this.orders().filter(o => o.calling)
+  );
+
+  readonly callingOrdersCount = computed(() => this.callingOrders().length);
+
+
+  readonly ordersByChannel = computed(() => {
+    const groups = new Map<OrderChannel, OrderDto[]>();
+    for (const order of this.activeOrders()) {
+      const list = groups.get(order.channel) ?? [];
+      list.push(order);
+      groups.set(order.channel, list);
+    }
+    return groups;
+  });
+
+  readonly channelWaitStats = computed<ChannelWaitStats[]>(() => {
+    const groups = this.ordersByChannel();
+    return Array.from(groups.entries()).map(([channel, list]) => {
+      const waits = list.map(o => o.elapsedSeconds);
+      const delayedCount = list.filter(o => o.delayed).length;
+      const avgWaitSeconds = waits.length
+        ? Math.round(waits.reduce((sum, s) => sum + s, 0) / waits.length)
+        : 0;
+      const maxWaitSeconds = waits.length ? Math.max(...waits) : 0;
+
+      return {
+        channel,
+        activeCount: list.length,
+        delayedCount,
+        avgWaitSeconds,
+        maxWaitSeconds,
+        onTrack: delayedCount === 0,
+      };
+    });
+  });
+
+  readonly avgDwellSeconds = computed(() => {
+    const active = this.activeOrders();
+    if (!active.length) return 0;
+    const total = active.reduce((sum, o) => sum + o.elapsedSeconds, 0);
+    return Math.round(total / active.length);
+  });
 
   constructor() {
     this.setupOrderUpdates();

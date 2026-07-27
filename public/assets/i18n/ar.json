@@ -142,9 +142,9 @@
     }
   },
   "DASHBOARD": {
-    "ARIA": "لوحة تحليل حمل المطبخ",
-    "TITLE": "تحليل حمل المطبخ",
-    "SUBTITLE": "الإنتاج والتوزيع اللحظي في المحطة 01",
+    "ARIA": "لوحة تحكم عمليات المطبخ",
+    "TITLE": "لوحة تحكم المطبخ",
+    "SUBTITLE": "عرض مباشر للطلبات والحمل والعاملين",
     "ACTIONS": {
       "REASSIGN": "إعادة توزيع الطاقم",
       "PAUSE": "إيقاف الطلبات الجديدة",
@@ -152,28 +152,63 @@
       "VIEW": "عرض"
     },
     "GAUGE": {
-      "ARIA": "مؤشر حمل النظام",
-      "PERCENT_ARIA": "حمل المطبخ {{percent}} بالمئة",
-      "SYSTEM_CRITICAL": "النظام حرج",
-      "SYSTEM_HIGH": "النظام مرتفع",
-      "SYSTEM_MEDIUM": "النظام متوسط",
-      "SYSTEM_LOW": "النظام طبيعي",
-      "CRITICAL": "حمل حرج",
-      "HEAVY": "حمل ثقيل",
-      "MEDIUM": "حمل متوسط",
-      "LIGHT": "حمل خفيف",
-      "ACTIVE_TICKETS": "التذاكر النشطة",
-      "AVG_DWELL": "متوسط الانتظار"
+      "ARIA": "مقياس حمل المطبخ",
+      "PERCENT_ARIA": "حمل المطبخ عند {{percent}} بالمئة",
+      "ACTIVE_TICKETS": "الطلبات النشطة",
+      "AVG_DWELL": "متوسط زمن الانتظار",
+      "CRITICAL": "حرج",
+      "HEAVY": "مرتفع",
+      "MEDIUM": "متوسط",
+      "LIGHT": "منخفض",
+      "SYSTEM_CRITICAL": "النظام في حالة حرجة",
+      "SYSTEM_HIGH": "النظام تحت ضغط",
+      "SYSTEM_MEDIUM": "النظام معتدل",
+      "SYSTEM_LOW": "النظام طبيعي"
     },
     "SCHEDULE": {
-      "TITLE": "جدول الإنجاز المتوقع",
-      "LAST_UPDATE": "آخر تحديث: قبل {{seconds}}ث",
-      "EXPEDITED": "مستعجل / توصيل",
-      "DINE_IN": "تناول عادي",
-      "PREORDERS": "طلبات مسبقة / مجدولة",
-      "WAIT_12M": "انتظار 12د",
-      "WAIT_22M": "انتظار 22د",
-      "ON_TRACK": "على المسار"
+      "TITLE": "الجدول الزمني المتوقع للإنجاز",
+      "LAST_UPDATE": "آخر تحديث: منذ {{seconds}} ثانية",
+      "LANE_DELIVERY": "توصيل سريع",
+      "LANE_WALK_IN": "حضوري",
+      "LANE_ONLINE": "أونلاين",
+      "LANE_OTHER": "طلبات أخرى",
+      "ON_TRACK": "ضمن الجدول",
+      "WAIT_MINUTES": "انتظار {{minutes}} د",
+      "EMPTY": "لا توجد طلبات نشطة حاليًا",
+      "STATION_OPERATIONAL": "يعمل بكفاءة",
+      "STATION_BOTTLENECK": "اختناق",
+      "STATION_KITCHEN_01": "المطبخ ١",
+      "STATION_02": "المحطة ٢",
+      "TOTAL_STAFF": "إجمالي العاملين",
+      "STAFF_ACTIVE": "{{count}} نشط"
+    },
+
+    "QUEUE": {
+      "TITLE": "الطلبات المتأثرة",
+      "FILTER": "متأخر",
+      "FILTER_COUNT": "{{count}} متأخر",
+      "MENU_ARIA": "تصفية الطلبات",
+      "COLS": {
+        "ORDER": "الطلب",
+        "PRIORITY": "الأولوية",
+        "ITEMS": "الأصناف",
+        "ELAPSED": "الوقت المنقضي",
+        "TREND": "الاتجاه",
+        "ACTIONS": "إجراءات"
+      },
+      "PRIORITY": {
+        "HIGH": "عالية",
+        "MEDIUM": "متوسطة",
+        "LOW": "منخفضة"
+      },
+      "ITEMS_COUNT": "{{count}} صنف",
+      "TREND": {
+        "DELAY": "تأخر",
+        "STABLE": "مستقر",
+        "EARLY": "متقدم"
+      },
+      "ACTION_VIEW": "عرض",
+      "EMPTY": "لا توجد طلبات متأثرة — المطبخ يعمل بسلاسة"
     },
     "STATUS": {
       "KITCHEN_OPS": "عمليات المطبخ 01",
@@ -182,19 +217,6 @@
       "OPERATIONAL": "يعمل",
       "BOTTLENECK": "اختناق",
       "STAFF_ACTIVE": "08 نشط"
-    },
-    "QUEUE": {
-      "TITLE": "قائمة الطلبات المتأثرة",
-      "FILTER": "تصفية: كل الأولوية العالية",
-      "MENU_ARIA": "خيارات القائمة",
-      "COLS": {
-        "ORDER": "رقم الطلب",
-        "PRIORITY": "الأولوية",
-        "ITEMS": "العناصر",
-        "ELAPSED": "المدة",
-        "TREND": "اتجاه الانتظار",
-        "ACTIONS": "إجراءات"
-      }
     },
     "PRIORITY": {
       "HIGH": "أولوية عالية",

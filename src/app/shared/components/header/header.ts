@@ -102,7 +102,7 @@ export class Header implements OnInit {
   private handleSearch(): void {
     this.queryInput$
       .pipe(
-        debounceTime(250),
+        debounceTime(400),
         distinctUntilChanged((a, b) => a.q === b.q && a.category === b.category && a.reset === b.reset && this.previousOffset() === this.offset()),
         tap(({ reset }) => {
           this.hasError.set(false);

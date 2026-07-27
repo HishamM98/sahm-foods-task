@@ -11,6 +11,15 @@ export type OrderChannel = ApiOrderChannel;
 
 export type OrderMetaTone = 'default' | 'accent' | 'danger' | 'success';
 
+export interface ChannelWaitStats {
+  channel: OrderChannel;
+  activeCount: number;
+  delayedCount: number;
+  avgWaitSeconds: number;
+  maxWaitSeconds: number;
+  onTrack: boolean;
+}
+
 export interface OrderStatusMeta {
   labelKey: string;
   icon: string;

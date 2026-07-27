@@ -344,29 +344,6 @@
   text-transform: uppercase;
 }
 
-.dash-queue__menu {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-}
-
-.dash-queue__menu img {
-  width: 18px;
-  height: 12px;
-  object-fit: contain;
-}
-
-.dash-queue__menu:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 2px;
-}
-
 .dash-queue__table-wrap {
   overflow-x: auto;
 }
@@ -678,6 +655,20 @@
 
 .dash-staff__card--open .dash-staff__role {
   color: var(--on-surface-variant);
+}
+
+.dash-schedule__empty,
+.dash-queue__empty {
+  color: var(--on-surface-variant);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  text-align: center;
+  padding: 8px 0;
+}
+
+.dash-queue__empty {
+  padding: 24px;
 }
 
 @media (max-width: 1100px) {

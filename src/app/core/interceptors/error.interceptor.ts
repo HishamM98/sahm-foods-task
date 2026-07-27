@@ -23,7 +23,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
           toast.addWarning('You are offline. Action queued for sync.');
         }
       } else {
-        toast.addError(error.message || 'Server connection error');
+        toast.addError('Server error');
       }
       return throwError(() => error);
     })
