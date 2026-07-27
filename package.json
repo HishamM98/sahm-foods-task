@@ -1,6 +1,14 @@
 {
   "name": "sahm-foods-task",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Sahm Foods Task",
+  "author": "Hisham Zaitoun",
+  "license": "MIT",
+  "homepage": "https://hishamm98.github.io/sahm-foods-task/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hishamm98/sahm-foods-task.git"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -35,6 +43,7 @@
     "@angular/compiler-cli": "^21.2.0",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
+    "angular-cli-ghpages": "^3.1.0",
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "jsdom": "^28.0.0",
