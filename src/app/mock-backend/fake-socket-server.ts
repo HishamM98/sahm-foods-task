@@ -63,11 +63,13 @@ class FakeSocketServer {
     const active = mockDb.orders.filter((o) => o.status !== 'completed');
     if (active.length) {
       const target = active[Math.floor(Math.random() * active.length)];
+      mockDb.updateOrderStatus(target.id, target.status === 'received' ? 'preparing' : target.status === 'preparing' ? 'ready' : target.status === 'ready' ? 'delivered' : 'completed');
       this.publishOrderUpdated(mockDb.getOrder(target.id)!);
     }
 
     const newOrder = mockDb.addOrder();
     this.publish('order.created', newOrder);
+    this.publishKitchenLoad(mockDb.getKitchenLoad());
   }
 }
 

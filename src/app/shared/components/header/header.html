@@ -21,7 +21,8 @@
                     (keydown)="onKeydown($event)" [attr.aria-label]="'HEADER.SEARCH_ARIA' | translate" role="combobox"
                     aria-autocomplete="list" [attr.aria-expanded]="isOpen()" aria-controls="header-search-dropdown"
                     [placeholder]="'HEADER.SEARCH_PLACEHOLDER' | translate">
-                <kbd class="header__shortcut">{{ 'HEADER.SHORTCUT' | translate }}</kbd>
+                <kbd class="header__shortcut shortcut-default">⌘ K</kbd>
+                <kbd class="header__shortcut shortcut-focused">ESC</kbd>
             </label>
 
             @if (isOpen()) {

@@ -379,6 +379,17 @@
   color: var(--outline);
 }
 
+.shortcut-focused {
+  display: none;
+}
+
+.header__search-label:focus-within .shortcut-default {
+  display: none;
+}
+.header__search-label:focus-within .shortcut-focused {
+  display: inline-block;
+}
+
 .header__right {
   display: flex;
   align-items: center;

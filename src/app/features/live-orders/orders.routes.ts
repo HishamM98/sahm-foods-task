@@ -6,4 +6,8 @@ export const ordersRoutes: Routes = [
     loadComponent: () =>
       import('./pages/live-orders-page/live-orders-page').then((m) => m.LiveOrdersPage),
   },
+  {
+    path: '**',
+    redirectTo: '',
+  }
 ];

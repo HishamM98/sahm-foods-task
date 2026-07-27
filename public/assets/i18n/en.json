@@ -6,7 +6,6 @@
     "LOAD_ARIA": "Kitchen load: High",
     "SEARCH_PLACEHOLDER": "Search products...",
     "SEARCH_ARIA": "Search orders",
-    "SHORTCUT": "⌘ K",
     "NETWORK_ONLINE": "Network: Online",
     "NETWORK_OFFLINE": "Network: Offline",
     "LANG_TOGGLE_ARIA": "Switch to Arabic",
@@ -135,6 +134,84 @@
     "ERRORS": {
       "LOAD_FAILED": "Could not load this order.",
       "MOVE_FAILED": "Could not update order status."
+    }
+  },
+  "DASHBOARD": {
+    "ARIA": "Kitchen load analysis dashboard",
+    "TITLE": "Kitchen Load Analysis",
+    "SUBTITLE": "Real-time throughput and allocation at Station 01",
+    "ACTIONS": {
+      "REASSIGN": "Reassign Staff",
+      "PAUSE": "Pause New Orders",
+      "BUMP": "Bump to Front",
+      "VIEW": "View"
+    },
+    "GAUGE": {
+      "ARIA": "System load gauge",
+      "PERCENT_ARIA": "Kitchen load {{percent}} percent",
+      "SYSTEM_CRITICAL": "System Critical",
+      "SYSTEM_HIGH": "System High",
+      "SYSTEM_MEDIUM": "System Moderate",
+      "SYSTEM_LOW": "System Nominal",
+      "CRITICAL": "Critical Load",
+      "HEAVY": "Heavy Load",
+      "MEDIUM": "Moderate Load",
+      "LIGHT": "Light Load",
+      "ACTIVE_TICKETS": "Active Tickets",
+      "AVG_DWELL": "Avg Dwell"
+    },
+    "SCHEDULE": {
+      "TITLE": "Est. Completion Schedule",
+      "LAST_UPDATE": "Last update: {{seconds}}s ago",
+      "EXPEDITED": "Expedited / Delivery",
+      "DINE_IN": "Standard Dine-in",
+      "PREORDERS": "Pre-orders / Scheduled",
+      "WAIT_12M": "12m wait",
+      "WAIT_22M": "22m wait",
+      "ON_TRACK": "On Track"
+    },
+    "STATUS": {
+      "KITCHEN_OPS": "Kitchen Ops 01",
+      "STATION_02": "Station 02",
+      "TOTAL_STAFF": "Total Staff",
+      "OPERATIONAL": "Operational",
+      "BOTTLENECK": "Bottleneck",
+      "STAFF_ACTIVE": "08 Active"
+    },
+    "QUEUE": {
+      "TITLE": "Impacted Orders Queue",
+      "FILTER": "Filter: All High Priority",
+      "MENU_ARIA": "Queue options",
+      "COLS": {
+        "ORDER": "Order #",
+        "PRIORITY": "Priority",
+        "ITEMS": "Items",
+        "ELAPSED": "Elapsed",
+        "TREND": "Wait Trend",
+        "ACTIONS": "Actions"
+      }
+    },
+    "PRIORITY": {
+      "HIGH": "High Priority",
+      "MEDIUM": "Medium",
+      "LOW": "Low"
+    },
+    "TREND": {
+      "DELAY": "+4m delay",
+      "STABLE": "Stable",
+      "EARLY": "-2m early"
+    },
+    "STAFF": {
+      "TITLE": "Staff Allocation Overview",
+      "LEGEND_PREP": "Prep",
+      "LEGEND_GRILL": "Grill",
+      "LEGEND_EXPO": "Expo",
+      "PREP_1": "Prep 1",
+      "PREP_2": "Prep 2",
+      "GRILL_1": "Grill 1",
+      "EXPO": "Expo",
+      "OPEN": "Open",
+      "ASSIGN": "Assign"
     }
   },
   "TOAST": {

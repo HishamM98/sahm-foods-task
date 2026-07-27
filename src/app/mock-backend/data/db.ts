@@ -105,13 +105,16 @@ class MockDb {
   }
 
   getKitchenLoad(): KitchenLoadDto {
-    const kitchenLoadPercent = this.orders.filter((o) => o.status === 'preparing' || o.status === 'received').length / this.orders.length * 100;
-    let kitchenLoad = {
+    const kitchenLoadPercent = Math.floor(this.orders.filter((o) => o.status === 'preparing' || o.status === 'received').length / this.orders.length * 100);
+    const activeTickets = this.orders.filter((o) =>
+      o.status === 'received' || o.status === 'preparing' || o.status === 'ready',
+    ).length;
+    const avgDwellSeconds = Math.floor(this.orders.filter((o) => o.status === 'preparing' || o.status === 'received').reduce((acc, o) => acc + o.elapsedSeconds, 0) / activeTickets);
+    const kitchenLoad = {
       level: toLoadLevel(kitchenLoadPercent),
       percent: kitchenLoadPercent,
-      activeTickets: this.orders.filter((o) =>
-        o.status === 'received' || o.status === 'preparing' || o.status === 'ready',
-      ).length,
+      activeTickets: activeTickets,
+      avgDwellSeconds: avgDwellSeconds,
       updatedAt: new Date().toISOString(),
     };
     return clone(kitchenLoad);

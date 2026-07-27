@@ -5,7 +5,6 @@
     "LOAD_ARIA": "حمل المطبخ: مرتفع",
     "SEARCH_PLACEHOLDER": "ابحث عن المنتجات...",
     "SEARCH_ARIA": "البحث في الطلبات",
-    "SHORTCUT": "⌘ K",
     "NETWORK_ONLINE": "الشبكة: متصل",
     "NETWORK_OFFLINE": "الشبكة: غير متصل",
     "LANG_TOGGLE_ARIA": "التبديل إلى الإنجليزية",
@@ -135,6 +134,84 @@
     "ERRORS": {
       "LOAD_FAILED": "تعذر تحميل هذا الطلب.",
       "MOVE_FAILED": "تعذر تحديث حالة الطلب."
+    }
+  },
+  "DASHBOARD": {
+    "ARIA": "لوحة تحليل حمل المطبخ",
+    "TITLE": "تحليل حمل المطبخ",
+    "SUBTITLE": "الإنتاج والتوزيع اللحظي في المحطة 01",
+    "ACTIONS": {
+      "REASSIGN": "إعادة توزيع الطاقم",
+      "PAUSE": "إيقاف الطلبات الجديدة",
+      "BUMP": "نقل للمقدمة",
+      "VIEW": "عرض"
+    },
+    "GAUGE": {
+      "ARIA": "مؤشر حمل النظام",
+      "PERCENT_ARIA": "حمل المطبخ {{percent}} بالمئة",
+      "SYSTEM_CRITICAL": "النظام حرج",
+      "SYSTEM_HIGH": "النظام مرتفع",
+      "SYSTEM_MEDIUM": "النظام متوسط",
+      "SYSTEM_LOW": "النظام طبيعي",
+      "CRITICAL": "حمل حرج",
+      "HEAVY": "حمل ثقيل",
+      "MEDIUM": "حمل متوسط",
+      "LIGHT": "حمل خفيف",
+      "ACTIVE_TICKETS": "التذاكر النشطة",
+      "AVG_DWELL": "متوسط الانتظار"
+    },
+    "SCHEDULE": {
+      "TITLE": "جدول الإنجاز المتوقع",
+      "LAST_UPDATE": "آخر تحديث: قبل {{seconds}}ث",
+      "EXPEDITED": "مستعجل / توصيل",
+      "DINE_IN": "تناول عادي",
+      "PREORDERS": "طلبات مسبقة / مجدولة",
+      "WAIT_12M": "انتظار 12د",
+      "WAIT_22M": "انتظار 22د",
+      "ON_TRACK": "على المسار"
+    },
+    "STATUS": {
+      "KITCHEN_OPS": "عمليات المطبخ 01",
+      "STATION_02": "المحطة 02",
+      "TOTAL_STAFF": "إجمالي الطاقم",
+      "OPERATIONAL": "يعمل",
+      "BOTTLENECK": "اختناق",
+      "STAFF_ACTIVE": "08 نشط"
+    },
+    "QUEUE": {
+      "TITLE": "قائمة الطلبات المتأثرة",
+      "FILTER": "تصفية: كل الأولوية العالية",
+      "MENU_ARIA": "خيارات القائمة",
+      "COLS": {
+        "ORDER": "رقم الطلب",
+        "PRIORITY": "الأولوية",
+        "ITEMS": "العناصر",
+        "ELAPSED": "المدة",
+        "TREND": "اتجاه الانتظار",
+        "ACTIONS": "إجراءات"
+      }
+    },
+    "PRIORITY": {
+      "HIGH": "أولوية عالية",
+      "MEDIUM": "متوسطة",
+      "LOW": "منخفضة"
+    },
+    "TREND": {
+      "DELAY": "+4د تأخير",
+      "STABLE": "مستقر",
+      "EARLY": "-2د مبكر"
+    },
+    "STAFF": {
+      "TITLE": "نظرة عامة على توزيع الطاقم",
+      "LEGEND_PREP": "تحضير",
+      "LEGEND_GRILL": "شواء",
+      "LEGEND_EXPO": "تجهيز",
+      "PREP_1": "تحضير 1",
+      "PREP_2": "تحضير 2",
+      "GRILL_1": "شواء 1",
+      "EXPO": "تجهيز",
+      "OPEN": "مفتوح",
+      "ASSIGN": "تعيين"
     }
   },
   "TOAST": {

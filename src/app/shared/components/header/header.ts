@@ -80,25 +80,22 @@ export class Header implements OnInit {
 
   ngOnInit(): void {
     this.pollKitchenLoad();
-    this.kitchenApi
-      .getLoad()
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-        next: (load) => {
-          this.loadPercent.set(load.percent);
-          this.loadLevel.set(load.level);
-        },
-      });
-
     this.handleSearch();
   }
 
   private pollKitchenLoad(): void {
     timer(0, 4000).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => this.kitchenApi
       .getLoad()
-      .subscribe((load) => {
-        this.loadPercent.set(load.percent);
-        this.loadLevel.set(load.level);
+      .pipe(catchError(() => {
+        return of(null);
+      }))
+      .subscribe({
+        next: (load) => {
+          if (load) {
+            this.loadPercent.set(load.percent);
+            this.loadLevel.set(load.level);
+          }
+        }
       }));
   }
 
@@ -192,7 +189,6 @@ export class Header implements OnInit {
   }
 
   loadMore() {
-    debugger;
     if (this.isLoadingMore() || this.isLoading() || !this.hasMore()) return;
     this.queryInput$.next({ q: this.query(), category: this.activeCategory(), reset: false });
   }

@@ -9,24 +9,13 @@ const appRoutes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardPage,
+    loadComponent: () =>
+      import('./features/dashboard/pages/dashboard-page/dashboard-page').then((m) => m.DashboardPage),
   },
   {
     path: 'live-orders',
     loadChildren: () =>
       import('./features/live-orders/orders.routes').then((m) => m.ordersRoutes),
-  },
-  {
-    path: 'menu',
-    component: DashboardPage,
-  },
-  {
-    path: 'history',
-    component: DashboardPage,
-  },
-  {
-    path: 'settings',
-    component: DashboardPage,
   },
   {
     path: '**',

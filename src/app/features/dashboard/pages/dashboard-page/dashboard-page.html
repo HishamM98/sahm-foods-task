@@ -1,0 +1,187 @@
+<section class="dash" [attr.aria-label]="'DASHBOARD.ARIA' | translate">
+  <header class="dash__header">
+    <div class="dash__heading">
+      <h1 class="dash__title">{{ 'DASHBOARD.TITLE' | translate }}</h1>
+      <p class="dash__subtitle">{{ 'DASHBOARD.SUBTITLE' | translate }}</p>
+    </div>
+  </header>
+
+  <div class="dash__grid">
+    <!-- Load gauge -->
+    <article class="dash-card dash-gauge" [attr.aria-label]="'DASHBOARD.GAUGE.ARIA' | translate">
+      <div class="dash-gauge__badge" [attr.data-level]="loadLevel()">
+        <span class="dash-gauge__badge-dot" aria-hidden="true"></span>
+        <span class="dash-gauge__badge-label">{{ systemStatusKey() | translate }}</span>
+      </div>
+
+      <div class="dash-gauge__ring-wrap">
+        <svg class="dash-gauge__svg" viewBox="0 0 192 192" role="img"
+          [attr.aria-label]="('DASHBOARD.GAUGE.PERCENT_ARIA' | translate: { percent: loadPercent() })">
+          <circle class="dash-gauge__track" cx="96" cy="96" r="80" fill="none" stroke-width="14" />
+          <circle class="dash-gauge__fill" cx="96" cy="96" r="80" fill="none" stroke-width="14"
+            [attr.stroke-dasharray]="gaugeCircumference" [attr.stroke-dashoffset]="gaugeOffset()"
+            [attr.data-level]="loadLevel()" />
+        </svg>
+        <div class="dash-gauge__center">
+          <span class="dash-gauge__percent">{{ loadPercent() }}%</span>
+          <span class="dash-gauge__level">{{ loadLabelKey() | translate }}</span>
+        </div>
+      </div>
+
+      <div class="dash-gauge__stats">
+        <div class="dash-gauge__stat">
+          <span class="dash-gauge__stat-label">{{ 'DASHBOARD.GAUGE.ACTIVE_TICKETS' | translate }}</span>
+          <span class="dash-gauge__stat-value">{{ activeTickets() }}</span>
+        </div>
+        <div class="dash-gauge__stat">
+          <span class="dash-gauge__stat-label">{{ 'DASHBOARD.GAUGE.AVG_DWELL' | translate }}</span>
+          <span class="dash-gauge__stat-value">{{ avgDwell() }}</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Completion schedule -->
+    <article class="dash-card dash-schedule">
+      <header class="dash-card__header">
+        <h2 class="dash-card__title">{{ 'DASHBOARD.SCHEDULE.TITLE' | translate }}</h2>
+        <span class="dash-card__meta">
+          {{ 'DASHBOARD.SCHEDULE.LAST_UPDATE' | translate: { seconds: lastUpdateSeconds() } }}
+        </span>
+      </header>
+
+      <div class="dash-schedule__body">
+        <div class="dash-schedule__lanes">
+          @for (lane of scheduleLanes; track lane.id) {
+          <div class="dash-schedule__lane">
+            <div class="dash-schedule__lane-row">
+              <span class="dash-schedule__lane-label">{{ lane.labelKey | translate }}</span>
+              <span class="dash-schedule__lane-wait" [attr.data-tone]="lane.waitTone">
+                {{ lane.waitKey | translate }}
+              </span>
+            </div>
+            <div class="dash-schedule__track" role="progressbar" [attr.aria-valuenow]="lane.progress" aria-valuemin="0"
+              aria-valuemax="100">
+              <div class="dash-schedule__fill" [attr.data-tone]="lane.waitTone" [style.width.%]="lane.progress"></div>
+            </div>
+          </div>
+          }
+        </div>
+
+        <div class="dash-schedule__statuses">
+          @for (status of stationStatuses; track status.id) {
+          <div class="dash-schedule__status">
+            <span class="dash-schedule__status-label">{{ status.labelKey | translate }}</span>
+            <div class="dash-schedule__status-value">
+              <span class="dash-schedule__status-icon" aria-hidden="true">
+                <img [src]="status.icon" alt="" width="14" height="14" />
+              </span>
+              <span>{{ status.valueKey | translate }}</span>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+    </article>
+
+    <!-- Impacted orders queue -->
+    <article class="dash-card dash-queue">
+      <header class="dash-card__header">
+        <div class="dash-queue__heading">
+          <h2 class="dash-card__title">{{ 'DASHBOARD.QUEUE.TITLE' | translate }}</h2>
+          <span class="dash-queue__filter">{{ 'DASHBOARD.QUEUE.FILTER' | translate }}</span>
+        </div>
+        <button type="button" class="dash-queue__menu" [attr.aria-label]="'DASHBOARD.QUEUE.MENU_ARIA' | translate">
+          <img src="assets/dashboard/icons/filter.svg" alt="" width="18" height="12" />
+        </button>
+      </header>
+
+      <div class="dash-queue__table-wrap">
+        <table class="dash-queue__table">
+          <thead>
+            <tr>
+              <th scope="col">{{ 'DASHBOARD.QUEUE.COLS.ORDER' | translate }}</th>
+              <th scope="col">{{ 'DASHBOARD.QUEUE.COLS.PRIORITY' | translate }}</th>
+              <th scope="col">{{ 'DASHBOARD.QUEUE.COLS.ITEMS' | translate }}</th>
+              <th scope="col">{{ 'DASHBOARD.QUEUE.COLS.ELAPSED' | translate }}</th>
+              <th scope="col">{{ 'DASHBOARD.QUEUE.COLS.TREND' | translate }}</th>
+              <th scope="col" class="dash-queue__actions-col">{{ 'DASHBOARD.QUEUE.COLS.ACTIONS' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (order of impactedOrders; track order.id) {
+            <tr>
+              <td class="dash-queue__order">{{ order.number }}</td>
+              <td>
+                <span class="dash-queue__badge" [attr.data-priority]="order.priority">
+                  {{ order.priorityKey | translate }}
+                </span>
+              </td>
+              <td class="dash-queue__items">{{ order.items }}</td>
+              <td [class.dash-queue__elapsed--error]="order.elapsedTone === 'error'">
+                {{ order.elapsed }}
+              </td>
+              <td>
+                <span class="dash-queue__trend" [attr.data-trend]="order.trend">
+                  <img [src]="order.trendIcon" alt="" width="14" height="8" />
+                  {{ order.trendKey | translate }}
+                </span>
+              </td>
+              <td class="dash-queue__actions-col">
+                <button type="button" class="dash-queue__action"
+                  [class.dash-queue__action--primary]="order.actionTone === 'primary'">
+                  {{ order.actionKey | translate }}
+                </button>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <!-- Staff allocation -->
+    <article class="dash-card dash-staff">
+      <header class="dash-staff__header">
+        <h2 class="dash-card__title">{{ 'DASHBOARD.STAFF.TITLE' | translate }}</h2>
+        <div class="dash-staff__legend">
+          <span class="dash-staff__legend-item">
+            <span class="dash-staff__dot dash-staff__dot--prep" aria-hidden="true"></span>
+            {{ 'DASHBOARD.STAFF.LEGEND_PREP' | translate }}
+          </span>
+          <span class="dash-staff__legend-item">
+            <span class="dash-staff__dot dash-staff__dot--grill" aria-hidden="true"></span>
+            {{ 'DASHBOARD.STAFF.LEGEND_GRILL' | translate }}
+          </span>
+          <span class="dash-staff__legend-item">
+            <span class="dash-staff__dot dash-staff__dot--expo" aria-hidden="true"></span>
+            {{ 'DASHBOARD.STAFF.LEGEND_EXPO' | translate }}
+          </span>
+        </div>
+      </header>
+
+      <div class="dash-staff__grid">
+        @for (member of staffMembers; track member.id) {
+        @if (member.assignSlot) {
+        <button type="button" class="dash-staff__card dash-staff__card--open">
+          <span class="dash-staff__avatar dash-staff__avatar--open" aria-hidden="true">
+            <img src="assets/dashboard/icons/plus.svg" alt="" width="14" height="14" />
+          </span>
+          <span class="dash-staff__name">{{ 'DASHBOARD.STAFF.ASSIGN' | translate }}</span>
+          <span class="dash-staff__role">{{ member.stationKey | translate }}</span>
+        </button>
+        } @else {
+        <div class="dash-staff__card" [attr.data-station]="member.station">
+          <span class="dash-staff__avatar" [attr.data-station]="member.station">
+            <img [src]="member.avatar" [alt]="member.name" width="40" height="40" />
+          </span>
+          <span class="dash-staff__name">{{ member.name }}</span>
+          <span class="dash-staff__role" [attr.data-station]="member.station">
+            {{ member.stationKey | translate }}
+          </span>
+        </div>
+        }
+        }
+      </div>
+    </article>
+  </div>
+</section>

@@ -71,6 +71,7 @@ export interface KitchenLoadDto {
   level: KitchenLoadLevel;
   percent: number;
   activeTickets: number;
+  avgDwellSeconds: number;
   updatedAt: string;
 }
 
