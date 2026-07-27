@@ -3,7 +3,9 @@ import { OrdersApiService } from '../../../core/api/orders-api.service';
 import { OrderDto, OrderStatus } from '../../../core/models/api.types';
 import { OrderChannel } from '../models/order.model';
 import { FakeSocketService } from '../../../core/services/fake-socket.service';
-import { filter, Observable, take, tap } from 'rxjs';
+import { filter, Observable, of, take, tap } from 'rxjs';
+import { OfflineQueueService, QueuedAction } from '../../../core/services/offline-http-queue.service';
+import { environment } from '../../../../environments/environment';
 
 interface ActiveFilter {
   status?: OrderStatus;
@@ -16,6 +18,7 @@ interface ActiveFilter {
 export class OrdersStore {
   private readonly api = inject(OrdersApiService);
   private readonly socket = inject(FakeSocketService);
+  private readonly offlineQueue = inject(OfflineQueueService);
 
   private ordersState = signal<OrderDto[]>([]);
   private isLoadingState = signal<boolean>(false);
@@ -69,9 +72,22 @@ export class OrdersStore {
     });
   }
 
-  addOrder(): Observable<OrderDto> {
+  addOrder(): Observable<OrderDto | null> {
     this.isSubmittingState.set(true);
     this.errorState.set(null);
+
+    const queuedAction: QueuedAction = {
+      id: crypto.randomUUID(),
+      url: `${environment.apiBaseUrl}/orders`,
+      method: 'POST',
+      body: {},
+      timestamp: Date.now()
+    };
+
+    if (!this.offlineQueue.isOnline()) {
+      this.offlineQueue.enqueueAction(queuedAction);
+      return of(null);
+    }
 
     return this.api.create().pipe(
       take(1),
@@ -80,16 +96,28 @@ export class OrdersStore {
           this.isSubmittingState.set(false);
         },
         error: (err) => {
-          this.errorState.set('Failed to add order.');
           this.isSubmittingState.set(false);
         }
       })
     );
   }
 
-  updateOrderStatus(orderId: string, status: OrderStatus): Observable<OrderDto> {
+  updateOrderStatus(orderId: string, status: OrderStatus): Observable<OrderDto | null> {
     this.isSubmittingState.set(true);
     this.errorState.set(null);
+
+    const queuedAction: QueuedAction = {
+      id: crypto.randomUUID(),
+      url: `${environment.apiBaseUrl}/orders/${orderId}/status`,
+      method: 'PATCH',
+      body: { status },
+      timestamp: Date.now()
+    };
+
+    if (!this.offlineQueue.isOnline()) {
+      this.offlineQueue.enqueueAction(queuedAction);
+      return of(null);
+    }
 
     return this.api.updateStatus(orderId, status).pipe(
       take(1),
@@ -98,7 +126,6 @@ export class OrdersStore {
           this.isSubmittingState.set(false);
         },
         error: (err) => {
-          this.errorState.set('Failed to update order status.');
           this.isSubmittingState.set(false);
         }
       })

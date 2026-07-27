@@ -13,6 +13,10 @@ export class ToastService {
     this.messageService.add({ severity: 'info', summary: this.translateService.instant('TOAST.INFO'), detail: this.translateService.instant(message) });
   }
 
+  addWarning(message: string): void {
+    this.messageService.add({ severity: 'warn', summary: this.translateService.instant('TOAST.WARNING'), detail: this.translateService.instant(message) });
+  }
+
   addError(message: string): void {
     this.messageService.add({ severity: 'error', summary: this.translateService.instant('TOAST.ERROR'), detail: this.translateService.instant(message) });
   }

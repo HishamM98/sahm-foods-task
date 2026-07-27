@@ -1,15 +1,30 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { ToastService } from '../../shared/services/toast.service';
-import { inject } from '@angular/core';
+import { inject, Injector, runInInjectionContext } from '@angular/core';
 import { catchError, retry } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
+  const injector = inject(Injector);
+
   return next(req).pipe(
-    retry(1),
+    retry({
+      count: 1,
+      delay: (error) => {
+        if (!navigator.onLine || error.status === 0) throw error;
+        return error;
+      }
+    }),
     catchError((error: HttpErrorResponse) => {
-      const toast = inject(ToastService);
-      toast.addError(error.message);
+      const toast = runInInjectionContext(injector, () => inject(ToastService));
+
+      if (!navigator.onLine || error.status === 0) {
+        if (req.method !== 'GET') {
+          toast.addWarning('You are offline. Action queued for sync.');
+        }
+      } else {
+        toast.addError(error.message || 'Server connection error');
+      }
       return throwError(() => error);
     })
   );

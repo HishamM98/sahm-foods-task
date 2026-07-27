@@ -78,7 +78,10 @@
       "LOAD_FAILED": "Could not load orders from the mock API.",
       "SERVE_FAILED": "Could not mark order as served.",
       "MOVE_FAILED": "Could not move order. Board was reverted.",
-      "ADD_FAILED": "Could not add order."
+      "ADD_FAILED": "Could not add order.",
+      "ADD_FAILED_OFFLINE": "Could not add order. Queued for sync.",
+      "SERVE_FAILED_OFFLINE": "Could not mark order as served. Queued for sync.",
+      "MOVE_FAILED_OFFLINE": "Could not move order. Queued for sync."
     },
     "SUCCESS": {
       "MOVE_ORDER": "Order moved successfully.",
@@ -219,6 +222,7 @@
   "TOAST": {
     "INFO": "Info",
     "ERROR": "An error occurred",
-    "SUCCESS": "Operation successful"
+    "SUCCESS": "Operation successful",
+    "WARNING": "Warning"
   }
 }

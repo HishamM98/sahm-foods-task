@@ -61,14 +61,26 @@ export class LiveOrdersPage implements OnInit {
 
   addOrder() {
     this.ordersStore.addOrder().subscribe({
-      next: () => this.toastService.addSuccess('LIVE_ORDERS.SUCCESS.ADD_ORDER'),
+      next: (order) => {
+        if (order) {
+          this.toastService.addSuccess('LIVE_ORDERS.SUCCESS.ADD_ORDER');
+        } else {
+          this.toastService.addWarning('LIVE_ORDERS.ERRORS.ADD_FAILED_OFFLINE');
+        }
+      },
       error: () => this.toastService.addError('LIVE_ORDERS.ERRORS.ADD_FAILED'),
     });
   }
 
   onServe(order: Order): void {
     this.ordersStore.updateOrderStatus(order.id, 'delivered').subscribe({
-      next: () => this.toastService.addSuccess('LIVE_ORDERS.SUCCESS.SERVE_ORDER'),
+      next: (order) => {
+        if (order) {
+          this.toastService.addSuccess('LIVE_ORDERS.SUCCESS.SERVE_ORDER');
+        } else {
+          this.toastService.addWarning('LIVE_ORDERS.ERRORS.SERVE_FAILED_OFFLINE');
+        }
+      },
       error: () => this.toastService.addError('LIVE_ORDERS.ERRORS.SERVE_FAILED'),
     });
   }
@@ -101,7 +113,13 @@ export class LiveOrdersPage implements OnInit {
     );
 
     this.ordersStore.updateOrderStatus(order.id, newStatus).subscribe({
-      next: () => this.toastService.addSuccess('LIVE_ORDERS.SUCCESS.MOVE_ORDER'),
+      next: (order) => {
+        if (order) {
+          this.toastService.addSuccess('LIVE_ORDERS.SUCCESS.MOVE_ORDER');
+        } else {
+          this.toastService.addWarning('LIVE_ORDERS.ERRORS.MOVE_FAILED_OFFLINE');
+        }
+      },
       error: () => this.toastService.addError('LIVE_ORDERS.ERRORS.MOVE_FAILED'),
     });
   }
