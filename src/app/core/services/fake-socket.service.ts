@@ -21,8 +21,19 @@ export class FakeSocketService implements OnDestroy {
     this.stream$ = fakeSocketServer.asObservable().pipe(
       shareReplay({ bufferSize: 1, refCount: true }),
     );
+
+    this.connect();
+  }
+
+  connect(): void {
     if (environment.useMockBackend) {
       fakeSocketServer.start();
+    }
+  }
+
+  disconnect(): void {
+    if (environment.useMockBackend) {
+      fakeSocketServer.stop();
     }
   }
 
