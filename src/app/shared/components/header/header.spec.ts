@@ -15,7 +15,7 @@ describe('Header', () => {
     await TestBed.configureTestingModule({
       imports: [Header],
       providers: [
-        provideTranslateService({ fallbackLang: 'en', lang: 'en' }),
+        provideTranslateService({ fallbackLang: 'ar', lang: 'ar' }),
         I18nService,
         provideHttpClient(),
         provideHttpClientTesting(),
@@ -27,9 +27,11 @@ describe('Header', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
 
+    await new Promise(resolve => setTimeout(resolve));
+
     const req = httpMock.expectOne('/api/kitchen/load');
     req.flush({
-      data: { level: 'high', percent: 72, activeTickets: 9, updatedAt: new Date().toISOString() },
+      data: { level: 'high', percent: 72, activeTickets: 9, avgDwellSeconds: 100, updatedAt: new Date().toISOString() },
     });
     await fixture.whenStable();
   });

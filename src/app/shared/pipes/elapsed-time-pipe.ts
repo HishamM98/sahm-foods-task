@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Pipe({
   name: 'elapsedTime',
   standalone: true,
-  pure: false, // Set to false if you want it to react immediately when language changes dynamically
+  pure: false,
 })
 export class ElapsedTimePipe implements PipeTransform {
   private readonly translate = inject(TranslateService);
