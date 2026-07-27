@@ -6,7 +6,7 @@ interface SidebarNavItem {
   id: string;
   labelKey: string;
   icon: string;
-  route: string;
+  route: string | null;
 }
 
 interface SidebarActionItem {
@@ -14,6 +14,7 @@ interface SidebarActionItem {
   labelKey: string;
   icon: string;
   tone?: 'danger';
+  route: string | null;
 }
 
 @Component({
@@ -41,19 +42,19 @@ export class Sidebar {
       id: 'menu',
       labelKey: 'SIDEBAR.MENU',
       icon: 'fa-solid fa-utensils',
-      route: '/menu',
+      route: null,
     },
     {
       id: 'history',
       labelKey: 'SIDEBAR.HISTORY',
       icon: 'fa-solid fa-clock-rotate-left',
-      route: '/history',
+      route: null,
     },
     {
       id: 'settings',
       labelKey: 'SIDEBAR.SETTINGS',
       icon: 'fa-solid fa-gear',
-      route: '/settings',
+      route: null,
     },
   ];
 
@@ -62,12 +63,14 @@ export class Sidebar {
       id: 'help',
       labelKey: 'SIDEBAR.HELP',
       icon: 'fa-regular fa-circle-question',
+      route: null,
     },
     {
       id: 'logout',
       labelKey: 'SIDEBAR.LOGOUT',
       icon: 'fa-solid fa-right-from-bracket',
       tone: 'danger',
+      route: null,
     },
   ];
 }

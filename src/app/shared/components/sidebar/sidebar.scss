@@ -94,12 +94,19 @@
   cursor: pointer;
 }
 
+.sidebar__link--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .sidebar__link:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
 
-.sidebar__link:hover:not(.sidebar__link--active):not(.sidebar__link--danger) {
+.sidebar__link:hover:not(.sidebar__link--active):not(.sidebar__link--danger):not(
+    .sidebar__link--disabled
+  ) {
   background: color-mix(in srgb, var(--surface-container-high) 80%, transparent);
   color: var(--on-surface);
 }
@@ -113,7 +120,7 @@
   color: var(--error);
 }
 
-.sidebar__link--danger:hover {
+.sidebar__link--danger:hover:not(.sidebar__link--disabled) {
   background: color-mix(in srgb, var(--error) 12%, transparent);
 }
 
