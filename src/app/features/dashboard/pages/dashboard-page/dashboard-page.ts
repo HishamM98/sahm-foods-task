@@ -1,3 +1,4 @@
+import { NgxEchartsDirective, provideEchartsCore } from 'ngx-echarts';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,7 +9,7 @@ import {
   signal,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { KitchenApiService } from '../../../../core/api/kitchen-api.service';
 import { FakeSocketService } from '../../../../core/services/fake-socket.service';
 import { KitchenLoadDto, KitchenLoadLevel } from '../../../../core/models/api.types';
@@ -19,26 +20,30 @@ import {
   STATION_STATUSES,
 } from '../../data/dashboard.seed';
 
-/** Circumference of the gauge ring (r = 80). */
-const GAUGE_CIRCUMFERENCE = 2 * Math.PI * 80;
+import * as echarts from 'echarts/core';
+import { GaugeChart } from 'echarts/charts';
+import { CanvasRenderer } from 'echarts/renderers';
+import type { EChartsCoreOption } from 'echarts/core';
+
+echarts.use([GaugeChart, CanvasRenderer]);
 
 @Component({
   selector: 'app-dashboard-page',
-  imports: [TranslatePipe],
+  imports: [TranslatePipe, NgxEchartsDirective],
   templateUrl: './dashboard-page.html',
   styleUrl: './dashboard-page.scss',
+  providers: [provideEchartsCore({ echarts })],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardPage implements OnInit {
   private readonly kitchenApi = inject(KitchenApiService);
   private readonly socket = inject(FakeSocketService);
   private readonly destroyRef = inject(DestroyRef);
-
+  private readonly translate = inject(TranslateService);
   readonly scheduleLanes = SCHEDULE_LANES;
   readonly stationStatuses = STATION_STATUSES;
   readonly impactedOrders = IMPACTED_ORDERS;
   readonly staffMembers = STAFF_MEMBERS;
-  readonly gaugeCircumference = GAUGE_CIRCUMFERENCE;
 
   readonly loadPercent = signal(85);
   readonly loadLevel = signal<KitchenLoadLevel>('critical');
@@ -75,9 +80,67 @@ export class DashboardPage implements OnInit {
     }
   });
 
-  readonly gaugeOffset = computed(() => {
-    const pct = Math.min(100, Math.max(0, this.loadPercent()));
-    return GAUGE_CIRCUMFERENCE * (1 - pct / 100);
+  private readonly colorMap: Record<KitchenLoadLevel, string> = {
+    critical: '#ef4444', // red
+    high: '#f97316',     // orange
+    medium: '#eab308',   // yellow
+    low: '#22c55e',    // green
+  };
+
+  readonly chartOption = computed<EChartsCoreOption>(() => {
+    const levelColor = this.colorMap[this.loadLevel()] ?? '#22c55e';
+    const levelLabel = this.translate.instant(this.loadLabelKey());
+
+    return {
+      series: [
+        {
+          type: 'gauge',
+          startAngle: 90,
+          endAngle: -270,
+          pointer: { show: false },
+          progress: {
+            show: true,
+            overlap: false,
+            roundCap: true,
+            clip: false,
+            itemStyle: {
+              color: levelColor,
+            },
+          },
+          axisLine: {
+            lineStyle: {
+              width: 14,
+              color: [[1, 'rgba(255, 255, 255, 0.08)']],
+            },
+          },
+          splitLine: { show: false },
+          axisTick: { show: false },
+          axisLabel: { show: false },
+          data: [
+            {
+              id: 'load-gauge-value',
+              value: this.loadPercent(),
+              name: levelLabel,
+            },
+          ],
+          title: {
+            fontSize: 12,
+            offsetCenter: [0, '20%'],
+            color: '#9ca3af',
+          },
+          detail: {
+            width: '60%',
+            lineHeight: 40,
+            borderRadius: 8,
+            offsetCenter: [0, '-10%'],
+            fontSize: 28,
+            fontWeight: 'bolder',
+            formatter: '{value}%',
+            color: '#fff',
+          },
+        },
+      ],
+    };
   });
 
   ngOnInit(): void {

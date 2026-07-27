@@ -147,55 +147,9 @@
   margin-top: 16px;
 }
 
-.dash-gauge__svg {
+.dash-gauge__chart {
   width: 100%;
   height: 100%;
-  transform: rotate(-90deg);
-}
-
-.dash-gauge__track {
-  stroke: var(--surface-container-highest);
-}
-
-.dash-gauge__fill {
-  stroke: var(--error);
-  stroke-linecap: round;
-  transition: stroke-dashoffset 0.4s ease;
-}
-
-.dash-gauge__fill[data-level='high'],
-.dash-gauge__fill[data-level='medium'] {
-  stroke: var(--tertiary);
-}
-
-.dash-gauge__fill[data-level='low'] {
-  stroke: var(--status-ready);
-}
-
-.dash-gauge__center {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-}
-
-.dash-gauge__percent {
-  color: var(--on-surface);
-  font-size: 42px;
-  font-weight: 900;
-  line-height: 42px;
-}
-
-.dash-gauge__level {
-  color: var(--on-surface-variant);
-  font-size: 11px;
-  font-weight: 500;
-  line-height: 14px;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
 }
 
 .dash-gauge__stats {
