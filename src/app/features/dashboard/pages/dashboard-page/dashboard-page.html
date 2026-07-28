@@ -124,7 +124,7 @@
                 </span>
               </td>
               <td class="dash-queue__actions-col">
-                <button type="button" class="dash-queue__action"
+                <button type="button" class="dash-queue__action" (click)="viewOrder(order.id)"
                   [class.dash-queue__action--primary]="order.actionTone === 'primary'">
                   {{ order.actionKey | translate }}
                 </button>

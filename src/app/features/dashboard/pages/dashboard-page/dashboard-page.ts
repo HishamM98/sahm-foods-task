@@ -22,6 +22,7 @@ import { GaugeChart } from 'echarts/charts';
 import { CanvasRenderer } from 'echarts/renderers';
 import type { EChartsCoreOption } from 'echarts/core';
 import { interval } from 'rxjs';
+import { Router } from '@angular/router';
 
 echarts.use([GaugeChart, CanvasRenderer]);
 
@@ -65,6 +66,7 @@ export class DashboardPage implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
   private readonly translate = inject(TranslateService);
   private readonly ordersStore = inject(OrdersStore);
+  private readonly router = inject(Router);
 
   readonly stationStatuses = STATION_STATUSES;
   readonly staffMembers = STAFF_MEMBERS;
@@ -198,6 +200,10 @@ export class DashboardPage implements OnInit {
       .subscribe((load) => this.applyLoad(load));
 
     interval(1000).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => this.incrementLastUpdateSeconds());
+  }
+
+  viewOrder(orderId: string) {
+    this.router.navigate(['/', { outlets: { modal: ['order', orderId] } }]);
   }
 
   private incrementLastUpdateSeconds(): void {
