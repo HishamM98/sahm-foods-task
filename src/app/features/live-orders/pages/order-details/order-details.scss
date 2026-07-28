@@ -1,7 +1,7 @@
 :host {
   display: block;
   width: min(1100px, 96vw);
-  max-height: min(900px, 90vh);
+  max-height: min(900px, 90dvh);
   color: var(--on-surface);
 }
 
@@ -9,7 +9,7 @@
   display: flex;
   align-items: stretch;
   width: 100%;
-  max-height: min(900px, 90vh);
+  max-height: min(900px, 90dvh);
   overflow: hidden;
   background: var(--surface);
   border: 1px solid var(--outline-variant);
@@ -761,13 +761,13 @@
 
   .order-details__shell {
     flex-direction: column;
-    max-height: min(920px, 94vh);
+    max-height: min(920px, 94dvh);
   }
 
   .order-details__main {
     border-inline-end: 0;
     border-bottom: 1px solid var(--outline-variant);
-    max-height: 58vh;
+    max-height: 58dvh;
   }
 
   .order-details__ai {

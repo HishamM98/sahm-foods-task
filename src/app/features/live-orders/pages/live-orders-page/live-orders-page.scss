@@ -68,10 +68,9 @@
   border-radius: var(--radius-sm);
   background: var(--surface-container);
   color: var(--on-surface);
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   cursor: pointer;
-  width: 180px;
 
   i {
     font-size: 12px;
@@ -173,6 +172,7 @@
   font-size: 12px;
   font-weight: 400;
   cursor: pointer;
+  white-space: nowrap;
 
   &:focus-visible {
     outline: 2px solid var(--primary);
